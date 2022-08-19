@@ -26,5 +26,33 @@ module.exports = [
     options: {
       name: '[path][name].[ext]',
     },
-  }
+  },
+  {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+  {
+    test: /\.s[ac]ss$/i,
+    use: [
+      "style-loader",
+      "css-loader",
+      {
+        loader: "sass-loader",
+        options: {
+          // Prefer `dart-sass`
+          implementation: require("node-sass"),
+        },
+      },
+    ],
+  },
+  {
+    test: /\.m?js/,
+    resolve: {
+      fullySpecified: false,
+    },
+  },
 ]

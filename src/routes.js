@@ -1,44 +1,44 @@
-import Index from "views/Index";
-import Profile from "views/examples/Profile";
-import Maps from "views/examples/Maps";
-import Tables from "views/examples/Tables";
-import Icons from "views/examples/Icons";
+import Index from './views/Index'
+import Profile from './views/examples/Profile'
+import Maps from './views/examples/Maps'
+import Tables from './views/examples/Tables'
+import Icons from './views/examples/Icons'
 
-var routes = [
+const routes = [
   {
-    path: "/index",
-    name: "Dashboard",
-    icon: "ni ni-tv-2 text-primary",
+    path: '/index',
+    name: 'Dashboard',
+    icon: 'ni ni-tv-2 text-primary',
     component: Index,
-    layout: "/admin",
+    layout: '',
   },
   {
-    path: "/icons",
-    name: "Employees",
-    icon: "ni ni-badge text-blue",
+    path: '/icons',
+    name: 'Employees',
+    icon: 'ni ni-badge text-blue',
     component: Icons,
-    layout: "/admin",
+    layout: '',
   },
   {
-    path: "/maps",
-    name: "Settings",
-    icon: "ni ni-settings-gear-65 text-orange",
+    path: '/maps',
+    name: 'Settings',
+    icon: 'ni ni-settings-gear-65 text-orange',
     component: Maps,
-    layout: "/admin",
+    layout: '',
   },
   {
-    path: "/user-profile",
-    name: "About",
-    icon: "ni ni-ui-04 text-yellow",
+    path: '/user-profile',
+    name: 'About',
+    icon: 'ni ni-ui-04 text-yellow',
     component: Profile,
-    layout: "/admin",
+    layout: '',
   },
   {
-    path: "/tables",
-    name: "Tables",
-    icon: "ni ni-bullet-list-67 text-red",
+    path: '/tables',
+    name: 'Tables',
+    icon: 'ni ni-bullet-list-67 text-red',
     component: Tables,
-    layout: "/admin",
+    layout: '',
   },
-];
-export default routes;
+]
+export default routes

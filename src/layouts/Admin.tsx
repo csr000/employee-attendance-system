@@ -1,41 +1,37 @@
-import React from "react";
-import { useLocation, Route, Switch, Redirect } from "react-router-dom";
+import React from 'react'
+import { useLocation, Route, Switch } from 'react-router-dom'
 // reactstrap components
-import { Container } from "reactstrap";
+import { Container } from 'reactstrap'
 // core components
-import AdminNavbar from "components/Navbars/AdminNavbar";
-import AdminFooter from "components/Footers/AdminFooter";
-import Sidebar from "components/Sidebar/Sidebar";
+import AdminNavbar from '../components/Navbars/AdminNavbar'
+import AdminFooter from '../components/Footers/AdminFooter'
+import Sidebar from '../components/Sidebar/Sidebar'
 
-import routes from "routes";
+import routes from '../routes'
 
 const Admin = (props: any) => {
-  const mainContent = React.useRef(null);
-  const location = useLocation();
+  const mainContent = React.useRef(null)
+  const location = useLocation()
 
   React.useEffect(() => {
-    document.documentElement.scrollTop = 0;
+    document.documentElement.scrollTop = 0
     // @ts-ignore: Object is possibly 'null'.
-    document.scrollingElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0
     // @ts-ignore: Object is possibly 'null'.
-    mainContent.current.scrollTop = 0;
-  }, [location]);
+    mainContent.current.scrollTop = 0
+  }, [location])
 
   const getRoutes = (routes: any[]) => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
+      return (
+        <Route
+          path={prop.path}
+          component={prop.component}
+          key={key}
+        />
+      )
+    })
+  }
 
   const getBrandText = (path: any) => {
     for (let i = 0; i < routes.length; i++) {
@@ -43,11 +39,11 @@ const Admin = (props: any) => {
         props.location.pathname.indexOf(routes[i].layout + routes[i].path) !==
         -1
       ) {
-        return routes[i].name;
+        return routes[i].name
       }
     }
-    return "Brand";
-  };
+    return 'Brand'
+  }
 
   return (
     <>
@@ -55,9 +51,9 @@ const Admin = (props: any) => {
         {...props}
         routes={routes}
         logo={{
-          innerLink: "/admin/index",
-          imgSrc: require("../assets/img/brand/argon-react.png").default,
-          imgAlt: "...",
+          innerLink: '/',
+          imgSrc: require('../assets/img/brand/argon-react.png').default,
+          imgAlt: '...',
         }}
       />
       <div className="main-content" ref={mainContent}>
@@ -65,16 +61,13 @@ const Admin = (props: any) => {
           {...props}
           brandText={getBrandText(props.location.pathname)}
         />
-        <Switch>
-          {getRoutes(routes)}
-          <Redirect from="*" to="/admin/index" />
-        </Switch>
+        <Switch>{getRoutes(routes)}</Switch>
         <Container fluid>
           <AdminFooter />
         </Container>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Admin;
+export default Admin

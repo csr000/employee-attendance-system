@@ -1,0 +1,5 @@
+declare module 'layouts/*'
+declare module 'assets/*'
+declare module 'components/*'
+declare module 'routes'
+declare module 'chart.js'

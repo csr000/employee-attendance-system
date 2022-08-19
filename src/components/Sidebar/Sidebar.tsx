@@ -57,7 +57,7 @@ const Sidebar = (props: { location?: any; bgColor?: any; routes?: any; logo?: an
       return (
         <NavItem key={key}>
           <NavLink
-            to={prop.layout + prop.path}
+            to={prop.path}
             tag={NavLinkRRD}
             onClick={closeCollapse}
             activeClassName="active"
