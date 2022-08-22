@@ -1,8 +1,8 @@
 import Index from './views/Index'
-import Profile from './views/examples/Profile'
-import Maps from './views/examples/Maps'
+import About from './views/examples/About'
+import Settings from './views/examples/Settings'
 import Tables from './views/examples/Tables'
-import Icons from './views/examples/Icons'
+import Employees from './views/examples/Employees'
 
 const routes = [
   {
@@ -13,24 +13,24 @@ const routes = [
     layout: '',
   },
   {
-    path: '/icons',
+    path: '/employees',
     name: 'Employees',
     icon: 'ni ni-badge text-blue',
-    component: Icons,
+    component: Employees,
     layout: '',
   },
   {
-    path: '/maps',
+    path: '/settings',
     name: 'Settings',
     icon: 'ni ni-settings-gear-65 text-orange',
-    component: Maps,
+    component: Settings,
     layout: '',
   },
   {
-    path: '/user-profile',
+    path: '/about',
     name: 'About',
     icon: 'ni ni-ui-04 text-yellow',
-    component: Profile,
+    component: About,
     layout: '',
   },
   {

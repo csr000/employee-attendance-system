@@ -100,7 +100,7 @@ const Sidebar = (props: { location?: any; bgColor?: any; routes?: any; logo?: an
           <span className="navbar-toggler-icon" />
         </button>
         {/* Brand */}
-        {logo ? (
+        {/* {logo ? (
           <NavbarBrand className="pt-0" {...navbarBrandProps}>
             <img
               alt={logo.imgAlt}
@@ -108,7 +108,7 @@ const Sidebar = (props: { location?: any; bgColor?: any; routes?: any; logo?: an
               src={logo.imgSrc}
             />
           </NavbarBrand>
-        ) : null}
+        ) : null} */}
         {/* User */}
         <Nav className="align-items-center d-md-none">
           <UncontrolledDropdown nav>
