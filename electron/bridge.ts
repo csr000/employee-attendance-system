@@ -9,8 +9,8 @@ export const api = {
    * The function below can accessed using `window.Main.sendMessage`
    */
 
-  sendMessage: (channel, message: string) => {
-    ipcRenderer.send('message', message)
+  sendMessage: (channel: string, message: any) => {
+    ipcRenderer.send(channel, message)
   },
 
   /**
@@ -25,4 +25,4 @@ export const api = {
   },
 }
 
-contextBridge.exposeInMainWorld('Main', api)
+contextBridge.exposeInMainWorld('main', api)
