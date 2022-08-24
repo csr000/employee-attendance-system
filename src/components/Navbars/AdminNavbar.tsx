@@ -36,7 +36,7 @@ const AdminNavbar = (props: any) => {
                     <i className="fas fa-search" />
                   </InputGroupText>
                 </InputGroupAddon>
-                <Input placeholder="Search" type="text" />
+                <Input placeholder="Add Attendance" type="text" />
               </InputGroup>
             </FormGroup>
           </Form>
