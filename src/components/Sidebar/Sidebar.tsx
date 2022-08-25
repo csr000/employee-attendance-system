@@ -204,7 +204,7 @@ const Sidebar = (props: { location?: any; bgColor?: any; routes?: any; logo?: an
               <Input
                 aria-label="Search"
                 className="form-control-rounded form-control-prepended"
-                placeholder="Search"
+                placeholder="Add Attendance"
                 type="search"
               />
               <InputGroupAddon addonType="prepend">
