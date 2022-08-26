@@ -1,16 +1,8 @@
-import { useState } from 'react'
-import Chart from 'chart.js'
+import { useState, useEffect } from 'react'
+// import Chart from 'chart.js'
 // react plugin used to create charts
 // reactstrap components
-import {
-  Button,
-  Card,
-  CardHeader,
-  Table,
-  Container,
-  Row,
-  Col,
-} from 'reactstrap'
+import { Card, Container, Row, Col } from 'reactstrap'
 
 import TimeInput from 'react-widgets/TimeInput'
 import MUIDataTable from 'mui-datatables'
@@ -81,7 +73,7 @@ const Index = () => {
 
   const options = {
     // filterType: 'checkbox',
-    selectableRows: false, // <===== will turn off checkboxes in rows
+    selectableRows: 'none', // <===== will turn off checkboxes in rows
   }
   return (
     <>
@@ -90,44 +82,45 @@ const Index = () => {
       <Container className="mt--7" fluid>
         <Row className="mt-5">
           <Col className="mb-5 mb-xl-0" xl="12">
-            {/* add attendance */}
-            <form className="box">
-              <select
-                name="lects"
-                onChange={e => setSelectedLect(e.target.value)}
+            <Row>
+              {/* add attendance */}
+              <form className="box">
+                <select
+                  name="lects"
+                  onChange={e => setSelectedLect(e.target.value)}
+                >
+                  <option value="">--Choose Lecturer--</option>
+                  {lects.map((lect: any) => (
+                    <option key={lect.id} value={lect.name}>
+                      {lect.name}
+                    </option>
+                  ))}
+                </select>
+                <TimeInput
+                  use12HourClock
+                  // @ts-ignore
+                  defaultValue={new Date()}
+                  onChange={v => setValue(v?.toString())}
+                  style={{ width: 'auto' }}
+                />
+              </form>
+              <button
+                className="button"
+                type="button"
+                onClick={() => {
+                  const datetime = value || Date()
+                  window.main.sendMessage('ipc-example', [
+                    {
+                      aim: addATTENDANCE,
+                      selectedLect,
+                      datetime,
+                    },
+                  ])
+                }}
               >
-                <option value="">--Choose Lecturer--</option>
-                {lects.map((lect: any) => (
-                  <option key={lect.id} value={lect.name}>
-                    {lect.name}
-                  </option>
-                ))}
-              </select>
-              <TimeInput
-                use12HourClock
-                // @ts-ignore
-                defaultValue={new Date()}
-                onChange={v => setValue(v?.toString())}
-                style={{ width: 'auto' }}
-              />
-            </form>
-            <button
-              className="button"
-              type="button"
-              onClick={() => {
-                const datetime = value || Date()
-                window.main.sendMessage('ipc-example', [
-                  {
-                    aim: addATTENDANCE,
-                    selectedLect,
-                    datetime,
-                  },
-                ])
-              }}
-            >
-              <p className="add">Add New</p>
-            </button>
-
+                <p className="add">Add New</p>
+              </button>
+            </Row>
             <Card className="shadow">
               <MUIDataTable
                 title={'Employee List'}

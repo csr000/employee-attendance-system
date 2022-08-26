@@ -245,7 +245,7 @@ const Sidebar = (props: { location?: any; bgColor?: any; routes?: any; logo?: an
             <NavItem className="active-pro active">
               <NavLink href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adr-admin-sidebar">
                 <i className="ni ni-spaceship" />
-                Upgrade to PRO
+                ....
               </NavLink>
             </NavItem>
           </Nav>

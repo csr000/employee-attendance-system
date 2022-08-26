@@ -12,7 +12,7 @@ window.main.sendMessage('ipc-example', ['ping']);
 ReactDOM.render(
   <HashRouter>
     <Switch>
-      <Route path="/" component={props => <AdminLayout {...props} />} />
+      <Route path="/" component={(props: any) => <AdminLayout {...props} />} />
       {/* <Route path="auth" component={props => <AuthLayout {...props} />} /> */}
     </Switch>
   </HashRouter>,
