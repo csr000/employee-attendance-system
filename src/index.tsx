@@ -7,7 +7,7 @@ import './assets/scss/argon-dashboard-react.scss'
 
 import AdminLayout from './layouts/Admin'
 
-window.Main.sendMessage('ipc-example', ['ping']);
+window.main.sendMessage('ipc-example', ['ping']);
 
 ReactDOM.render(
   <HashRouter>
