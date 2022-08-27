@@ -23,6 +23,9 @@ export const api = {
   once: (channel: string, callback: Function) => {
     ipcRenderer.once(channel, (_, data) => callback(data))
   },
+  removeListener: (channel: string, callback: Function) => {
+    ipcRenderer.removeListener(channel, (_, data) => callback(data))
+  },
 }
 
 contextBridge.exposeInMainWorld('main', api)
