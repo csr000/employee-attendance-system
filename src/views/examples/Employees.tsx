@@ -1,15 +1,15 @@
 import { useState, useEffect, useMemo, SetStateAction } from 'react'
 // reactstrap components
 import { CardHeader, CardBody, Container, Row } from 'reactstrap'
+import { Employee } from '../../@types/decs'
 // core components
 import Header from '../../components/Headers/Header'
+import { EMP, TITLE } from '../../constants'
 import { handlePing } from './utils'
 
-const Card = (props: { id: string; name: any; email: any; phone: any; dept: any }) => {
+const Card = (props: Employee) => {
   // eslint-disable-next-line prefer-const
   let { id, name, email, phone, dept } = props
-  const DELETE = 'delete lect'
-  const UPDATE = 'update lect'
   const [updateName, setUpdateName] = useState(name)
   const [updateEmail, setUpdateEmail] = useState(email)
   const [updatePhone, setUpdatePhone] = useState(phone)
@@ -50,7 +50,7 @@ const Card = (props: { id: string; name: any; email: any; phone: any; dept: any 
             type="button"
             className="delete"
             onClick={() => {
-              window.main.sendMessage('ipc-example', [{ aim: DELETE, id }])
+              window.main.sendMessage('ipc-example', [{ aim: EMP.DELETE, id }])
             }}
           >
             <i className="ni ni-fat-delete"></i>
@@ -155,7 +155,7 @@ const Card = (props: { id: string; name: any; email: any; phone: any; dept: any 
                   updateDept || dept,
                 ]
                 window.main.sendMessage('ipc-example', [
-                  { aim: UPDATE, name, email, phone, dept, id },
+                  { aim: EMP.UPDATE, name, email, phone, dept, id },
                 ])
                 setSecondMarginLeftValue('-110%')
                 setFirstMarginLeftValue(0)
@@ -175,22 +175,20 @@ const Employees = () => {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [dept, setDept] = useState('')
-  const [lects, setLects] = useState([])
+  const [emps, setEmps] = useState([])
   useMemo(() => handlePing('emp'), [])
 
   // CONSTANTS
-  const CREATE = 'create lect'
 
-
-  const handleSetLects = (event: SetStateAction<never[]>[]) => {
-    setLects(event[0])
+  const handleSetEmps = (event: SetStateAction<never[]>[]) => {
+    setEmps(event[0])
   }
 
   useEffect(() => {
-    window.main.on('ipc-example', handleSetLects)
+    window.main.on('ipc-example', handleSetEmps)
     // handlePing()
     return () => {
-      window.main.removeListener('ipc-example', handleSetLects)
+      window.main.removeListener('ipc-example', handleSetEmps)
     }
   })
   return (
@@ -232,25 +230,25 @@ const Employees = () => {
                 type="button"
                 onClick={() => {
                   window.main.sendMessage('ipc-example', [
-                    { aim: CREATE, name, email, phone, dept },
+                    { aim: EMP.CREATE, name, email, phone, dept },
                   ])
                 }}
               >
-                Add Lecturer
+                Add {TITLE}
               </button>
             </form>
             <CardHeader className="bg-transparent">
               <h3 className="mb-0">Icons</h3>
             </CardHeader>
             <CardBody>
-              {lects.map((lect: any) => (
-                <div key={lect.id}>
+              {(emps as Employee[]).map(emp => (
+                <div key={emp.id}>
                   <Card
-                    id={lect.id}
-                    name={lect.name}
-                    email={lect.email}
-                    phone={lect.phone}
-                    dept={lect.dept}
+                    id={emp.id}
+                    name={emp.name}
+                    email={emp.email}
+                    phone={emp.phone}
+                    dept={emp.dept}
                   />
                 </div>
               ))}
