@@ -1,5 +1,4 @@
 import { useState, useEffect, SetStateAction, useMemo } from 'react'
-
 // reactstrap components
 import { Card, Container, Row, Col } from 'reactstrap'
 
@@ -9,32 +8,23 @@ import 'react-widgets/styles.css'
 
 import Header from '../components/Headers/Header'
 import { handlePing } from './examples/utils'
+import { Employee, Attendance } from '../@types/decs'
 
 const Index = () => {
   const [value, setValue] = useState()
-  const [lects, setLects] = useState([])
+  const [employees, setEmployees] = useState([])
   const [att, setAtt] = useState([])
   const [selectedLect, setSelectedLect] = useState([])
   useMemo(() => handlePing('dash'), [])
   // CONSTANTS
   const addATTENDANCE = 'add attendance'
-  
-  type Attendance = {
-    id: string
-    name: string
-    email: string
-    dept: string
-    datetime: string
- }
 
   const handleSetAtt = (event: SetStateAction<never[]>[]) => {
-    setLects(event[0]);
-    (event[1] as Attendance[]).map((i: { datetime: any }) => {
+    setEmployees(event[0])
+    ;(event[1] as Attendance[]).map((i: { datetime: string | Date }) => {
       let { datetime } = i
       datetime = new Date(datetime)
-      datetime = `${datetime.toDateString(
-
-      )}, ${datetime.toLocaleTimeString()}`
+      datetime = `${datetime.toDateString()}, ${datetime.toLocaleTimeString()}`
       i.datetime = datetime
       return i
     })
@@ -43,7 +33,6 @@ const Index = () => {
 
   useEffect(() => {
     window.main.on('ipc-example', handleSetAtt)
-    // handlePing()
     return () => {
       window.main.removeListener('ipc-example', handleSetAtt)
     }
@@ -68,10 +57,8 @@ const Index = () => {
     },
   ]
 
-  const data = att
-
   const options = {
-    selectableRowsHideCheckboxes : true
+    selectableRowsHideCheckboxes: true,
   }
   return (
     <>
@@ -84,13 +71,13 @@ const Index = () => {
               {/* add attendance */}
               <form className="box">
                 <select
-                  name="lects"
+                  name="employees"
                   onChange={(e: any) => setSelectedLect(e.target.value)}
                 >
                   <option value="">--Choose Lecturer--</option>
-                  {lects.map((lect: any) => (
-                    <option key={lect.id} value={lect.name}>
-                      {lect.name}
+                  {(employees as Employee[]).map(employee => (
+                    <option key={employee.id} value={employee.name}>
+                      {employee.name}
                     </option>
                   ))}
                 </select>
@@ -122,7 +109,7 @@ const Index = () => {
             <Card className="shadow">
               <MUIDataTable
                 title={'Employee List'}
-                data={data}
+                data={att}
                 columns={columns}
                 options={options}
               />
