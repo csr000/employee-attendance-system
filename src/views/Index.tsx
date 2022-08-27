@@ -11,8 +11,9 @@ import { handlePing } from './examples/utils'
 import { Employee, Attendance } from '../@types/decs'
 
 const Index = () => {
+  // emps == Employees, att == Attendance
   const [value, setValue] = useState()
-  const [employees, setEmployees] = useState([])
+  const [emps, setEmps] = useState([])
   const [att, setAtt] = useState([])
   const [selectedLect, setSelectedLect] = useState([])
   useMemo(() => handlePing('dash'), [])
@@ -20,7 +21,7 @@ const Index = () => {
   const addATTENDANCE = 'add attendance'
 
   const handleSetAtt = (event: SetStateAction<never[]>[]) => {
-    setEmployees(event[0])
+    setEmps(event[0])
     ;(event[1] as Attendance[]).map((i: { datetime: string | Date }) => {
       let { datetime } = i
       datetime = new Date(datetime)
@@ -71,13 +72,13 @@ const Index = () => {
               {/* add attendance */}
               <form className="box">
                 <select
-                  name="employees"
+                  name="emps"
                   onChange={(e: any) => setSelectedLect(e.target.value)}
                 >
                   <option value="">--Choose Lecturer--</option>
-                  {(employees as Employee[]).map(employee => (
-                    <option key={employee.id} value={employee.name}>
-                      {employee.name}
+                  {(emps as Employee[]).map(emp => (
+                    <option key={emp.id} value={emp.name}>
+                      {emp.name}
                     </option>
                   ))}
                 </select>

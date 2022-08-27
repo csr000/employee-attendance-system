@@ -37,17 +37,18 @@ ipcMain.on('ipc-example', async (event, arg) => {
     stmt.run(LectDict.selectedLect, LectDict.datetime);
   }
   // Lecturers Info
-  if (LectDict.aim === 'create lect') {
+  if (LectDict.aim === 'create emp') {
+    console.log('creating')
     const stmt = db.prepare(
       'INSERT INTO lecturers (name, email, phone, dept) VALUES (?, ?, ?, ?)'
     );
     stmt.run(LectDict.name, LectDict.email, LectDict.phone, LectDict.dept);
   }
-  if (LectDict.aim === 'delete lect') {
+  if (LectDict.aim === 'delete emp') {
     const stmt = db.prepare('DELETE FROM lecturers WHERE id = ?');
     stmt.run(LectDict.id);
   }
-  if (LectDict.aim === 'update lect') {
+  if (LectDict.aim === 'update emp') {
     const stmt = db.prepare(
       'UPDATE lecturers SET name = ?, email = ?, phone = ?, dept = ? WHERE id = ?'
     );
@@ -59,9 +60,9 @@ ipcMain.on('ipc-example', async (event, arg) => {
       LectDict.id
     );
   }
-  const lects = db.prepare('SELECT * FROM lecturers').all();
+  const employees = db.prepare('SELECT * FROM lecturers').all();
   const attendance = db.prepare('SELECT * FROM attendance').all();
-  event.reply('ipc-example', [lects, attendance]);
+  event.reply('ipc-example', [employees, attendance]);
 });
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string
