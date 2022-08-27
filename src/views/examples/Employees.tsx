@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo, SetStateAction } from 'react'
 // reactstrap components
 import { CardHeader, CardBody, Container, Row } from 'reactstrap'
 // core components
 import Header from '../../components/Headers/Header'
+import { handlePing } from './utils'
 
-const Card = props => {
+const Card = (props: { id: string; name: any; email: any; phone: any; dept: any }) => {
   // eslint-disable-next-line prefer-const
   let { id, name, email, phone, dept } = props
   const DELETE = 'delete lect'
@@ -175,25 +176,22 @@ const Employees = () => {
   const [phone, setPhone] = useState('')
   const [dept, setDept] = useState('')
   const [lects, setLects] = useState([])
-  const [isExec, setIsExec] = useState(false)
+  useMemo(() => handlePing('emp'), [])
+
   // CONSTANTS
   const CREATE = 'create lect'
 
-  const handlePing = () => {
-    if (!isExec) {
-      window.main.sendMessage('ipc-example', ['info'])
-      setIsExec(true)
-    }
-  }
 
-  const handleSetLects = event => {
+  const handleSetLects = (event: SetStateAction<never[]>[]) => {
     setLects(event[0])
   }
 
   useEffect(() => {
     window.main.on('ipc-example', handleSetLects)
-    handlePing()
-    return window.main.on('ipc-example', handleSetLects)
+    // handlePing()
+    return () => {
+      window.main.removeListener('ipc-example', handleSetLects)
+    }
   })
   return (
     <>

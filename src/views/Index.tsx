@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
-// import Chart from 'chart.js'
-// react plugin used to create charts
+import { useState, useEffect, SetStateAction, useMemo } from 'react'
+
 // reactstrap components
 import { Card, Container, Row, Col } from 'reactstrap'
 
@@ -8,36 +7,34 @@ import TimeInput from 'react-widgets/TimeInput'
 import MUIDataTable from 'mui-datatables'
 import 'react-widgets/styles.css'
 
-// core components
-// import {
-//   chartOptions,
-//   parseOptions,
-// } from "../variables/charts";
-
 import Header from '../components/Headers/Header'
+import { handlePing } from './examples/utils'
 
 const Index = () => {
   const [value, setValue] = useState()
   const [lects, setLects] = useState([])
   const [att, setAtt] = useState([])
   const [selectedLect, setSelectedLect] = useState([])
-  const [isExec, setIsExec] = useState(false)
+  useMemo(() => handlePing('dash'), [])
   // CONSTANTS
   const addATTENDANCE = 'add attendance'
+  
+  type Attendance = {
+    id: string
+    name: string
+    email: string
+    dept: string
+    datetime: string
+ }
 
-  const handlePing = () => {
-    if (!isExec) {
-      window.main.sendMessage('ipc-example', ['dash'])
-      setIsExec(true)
-    }
-  }
-
-  const handleSetLects = (event: ILect[][]) => {
-    setLects(event[0])
-    event[1].map((i: ILect) => {
+  const handleSetAtt = (event: SetStateAction<never[]>[]) => {
+    setLects(event[0]);
+    (event[1] as Attendance[]).map((i: { datetime: any }) => {
       let { datetime } = i
       datetime = new Date(datetime)
-      datetime = `${datetime.toDateString()}, ${datetime.toLocaleTimeString()}`
+      datetime = `${datetime.toDateString(
+
+      )}, ${datetime.toLocaleTimeString()}`
       i.datetime = datetime
       return i
     })
@@ -45,9 +42,11 @@ const Index = () => {
   }
 
   useEffect(() => {
-    window.main.on('ipc-example', handleSetLects)
-    handlePing()
-    return window.main.on('ipc-example', handleSetLects)
+    window.main.on('ipc-example', handleSetAtt)
+    // handlePing()
+    return () => {
+      window.main.removeListener('ipc-example', handleSetAtt)
+    }
   })
 
   const columns = [
@@ -72,8 +71,7 @@ const Index = () => {
   const data = att
 
   const options = {
-    // filterType: 'checkbox',
-    selectableRows: 'none', // <===== will turn off checkboxes in rows
+    selectableRowsHideCheckboxes : true
   }
   return (
     <>
@@ -87,7 +85,7 @@ const Index = () => {
               <form className="box">
                 <select
                   name="lects"
-                  onChange={e => setSelectedLect(e.target.value)}
+                  onChange={(e: any) => setSelectedLect(e.target.value)}
                 >
                   <option value="">--Choose Lecturer--</option>
                   {lects.map((lect: any) => (
@@ -100,7 +98,7 @@ const Index = () => {
                   use12HourClock
                   // @ts-ignore
                   defaultValue={new Date()}
-                  onChange={v => setValue(v?.toString())}
+                  onChange={(v: any) => setValue(v?.toString())}
                   style={{ width: 'auto' }}
                 />
               </form>
