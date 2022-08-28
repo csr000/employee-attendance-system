@@ -7,7 +7,7 @@ let mainWindow: BrowserWindow | null
 const db = new Database('db.db');
 // creating default tables
 db.prepare(
-  'CREATE TABLE IF NOT EXISTS lecturers (id INTEGER PRIMARY KEY, name TEXT, email TEXT, phone TEXT, dept TEXT)'
+  'CREATE TABLE IF NOT EXISTS employees (id INTEGER PRIMARY KEY, name TEXT, email TEXT, phone TEXT, dept TEXT)'
 ).run();
 db.prepare(
   'CREATE TABLE IF NOT EXISTS attendance (id INTEGER PRIMARY KEY, name TEXT, email TEXT, dept TEXT, datetime TEXT)'
@@ -18,49 +18,49 @@ db.prepare(
 ).run();
 
 ipcMain.on('ipc-example', async (event, arg) => {
-  const LectDict = arg[0];
-  console.log(LectDict);
+  const EmpDict = arg[0];
+  console.log(EmpDict);
   // auth
-  if (LectDict.aim === 'login') {
+  if (EmpDict.aim === 'login') {
     // todo: create a stmt to recieve pwd n compare it to the one in the db and send a response
     // const stmt = db.prepare(
     //   'INSERT INTO attendance (name, datetime) VALUES (?, ?)'
     // );
-    // stmt.run(LectDict.selectedLect, LectDict.datetime);
+    // stmt.run(EmpDict.selectedLect, EmpDict.datetime);
     event.reply('ipc-example-reply', true);
   }
   // Attendance
-  if (LectDict.aim === 'add attendance') {
+  if (EmpDict.aim === 'add attendance') {
     const stmt = db.prepare(
       'INSERT INTO attendance (name, datetime) VALUES (?, ?)'
     );
-    stmt.run(LectDict.selectedLect, LectDict.datetime);
+    stmt.run(EmpDict.selectedLect, EmpDict.datetime);
   }
-  // Lecturers Info
-  if (LectDict.aim === 'create emp') {
+  // Employees Info
+  if (EmpDict.aim === 'create emp') {
     console.log('creating')
     const stmt = db.prepare(
-      'INSERT INTO lecturers (name, email, phone, dept) VALUES (?, ?, ?, ?)'
+      'INSERT INTO employees (name, email, phone, dept) VALUES (?, ?, ?, ?)'
     );
-    stmt.run(LectDict.name, LectDict.email, LectDict.phone, LectDict.dept);
+    stmt.run(EmpDict.name, EmpDict.email, EmpDict.phone, EmpDict.dept);
   }
-  if (LectDict.aim === 'delete emp') {
-    const stmt = db.prepare('DELETE FROM lecturers WHERE id = ?');
-    stmt.run(LectDict.id);
+  if (EmpDict.aim === 'delete emp') {
+    const stmt = db.prepare('DELETE FROM employees WHERE id = ?');
+    stmt.run(EmpDict.id);
   }
-  if (LectDict.aim === 'update emp') {
+  if (EmpDict.aim === 'update emp') {
     const stmt = db.prepare(
-      'UPDATE lecturers SET name = ?, email = ?, phone = ?, dept = ? WHERE id = ?'
+      'UPDATE employees SET name = ?, email = ?, phone = ?, dept = ? WHERE id = ?'
     );
     stmt.run(
-      LectDict.name,
-      LectDict.email,
-      LectDict.phone,
-      LectDict.dept,
-      LectDict.id
+      EmpDict.name,
+      EmpDict.email,
+      EmpDict.phone,
+      EmpDict.dept,
+      EmpDict.id
     );
   }
-  const employees = db.prepare('SELECT * FROM lecturers').all();
+  const employees = db.prepare('SELECT * FROM employees').all();
   const attendance = db.prepare('SELECT * FROM attendance').all();
   event.reply('ipc-example', [employees, attendance]);
 });
