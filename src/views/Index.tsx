@@ -53,7 +53,7 @@ const Index = () => {
           <Col className="mb-5 mb-xl-0" xl="12">
             <Card className="shadow">
               <MUIDataTable
-                title={'Employee List'}
+                title={'Attendance'}
                 data={att}
                 columns={columns}
                 options={options}

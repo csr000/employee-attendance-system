@@ -35,7 +35,7 @@ const DashboardForm = () => {
         style={{ width: 'auto' }}
       />
       <button
-        className="button"
+        className="add-btn"
         type="button"
         onClick={() => {
           const datetime = value || Date()
@@ -48,7 +48,7 @@ const DashboardForm = () => {
           ])
         }}
       >
-        <p className="add">Add New</p>
+        Add Attendance
       </button>
     </form>
   )
@@ -82,8 +82,7 @@ const EmployeesForm = () => {
         onChange={e => setDept(e.target.value)}
       />
       <button
-        className="button"
-        style={{ padding: '10px' }}
+        className="add-btn"
         type="button"
         onClick={() => {
           window.main.sendMessage('ipc-example', [
