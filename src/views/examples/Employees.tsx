@@ -1,10 +1,11 @@
-import { useState, useEffect, useMemo, SetStateAction } from 'react'
+import { useState, useEffect, useMemo, useContext } from 'react'
 // reactstrap components
-import { CardHeader, CardBody, Container, Row } from 'reactstrap'
+import { CardHeader, CardBody, Container, Row, Col } from 'reactstrap'
 import { Employee } from '../../@types/decs'
 // core components
 import Header from '../../components/Headers/Header'
-import { EMP, TITLE } from '../../constants'
+import { EMP } from '../../constants'
+import { Context } from '../../context'
 import { handlePing } from './utils'
 
 const Card = (props: Employee) => {
@@ -171,16 +172,8 @@ const Card = (props: Employee) => {
 }
 
 const Employees = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [dept, setDept] = useState('')
-  const [emps, setEmps] = useState([])
+  const { emps, handleSetEmps } = useContext<any>(Context)
   useMemo(() => handlePing('emp'), [])
-
-  const handleSetEmps = (event: SetStateAction<never[]>[]) => {
-    setEmps(event[0])
-  }
 
   useEffect(() => {
     window.main.on('ipc-example', handleSetEmps)
@@ -195,42 +188,9 @@ const Employees = () => {
       {/* Page content */}
       <Container className="mt--7" fluid>
         {/* Table */}
-        <Row>
-          <div className="col">
-            <form>
-              <input
-                type="text"
-                placeholder="Name"
-                onChange={e => setName(e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="Email"
-                onChange={e => setEmail(e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="Mobile Number"
-                onChange={e => setPhone(e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="Department"
-                onChange={e => setDept(e.target.value)}
-              />
-              <button
-                className="button"
-                style={{ padding: '10px' }}
-                type="button"
-                onClick={() => {
-                  window.main.sendMessage('ipc-example', [
-                    { aim: EMP.CREATE, name, email, phone, dept },
-                  ])
-                }}
-              >
-                Add {TITLE}
-              </button>
-            </form>
+        <Row className="mt-5">
+          <Col className="mb-5 mb-xl-0" xl="12">
+            
             <CardHeader className="bg-transparent">
               <h3 className="mb-0">Icons</h3>
             </CardHeader>
@@ -247,7 +207,7 @@ const Employees = () => {
                 </div>
               ))}
             </CardBody>
-          </div>
+          </Col>
         </Row>
       </Container>
     </>

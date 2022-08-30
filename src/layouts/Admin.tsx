@@ -24,13 +24,7 @@ const Admin = (props: any) => {
 
   const getRoutes = (routes: any[]) => {
     return routes.map((prop, key) => {
-      return (
-        <Route
-          path={prop.path}
-          component={prop.component}
-          key={key}
-        />
-      )
+      return <Route path={prop.path} component={prop.component} key={key} />
     })
   }
 
@@ -49,6 +43,10 @@ const Admin = (props: any) => {
   const [emps, setEmps] = useState([])
   const [att, setAtt] = useState([])
 
+  const handleSetEmps = (event: SetStateAction<never[]>[]) => {
+    setEmps(event[0])
+  }
+
   const handleSetAtt = (event: SetStateAction<never[]>[]) => {
     setEmps(event[0])
     ;(event[1] as Attendance[]).map((i: { datetime: string | Date }) => {
@@ -62,7 +60,7 @@ const Admin = (props: any) => {
   }
 
   return (
-    <Context.Provider value={{emps, att, handleSetAtt}}>
+    <Context.Provider value={{ emps, handleSetEmps, att, handleSetAtt }}>
       <Sidebar
         {...props}
         routes={routes}
