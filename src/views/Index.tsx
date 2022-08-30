@@ -51,7 +51,6 @@ const Index = () => {
       <Container className="mt--7" fluid>
         <Row className="mt-5">
           <Col className="mb-5 mb-xl-0" xl="12">
-            
             <Card className="shadow">
               <MUIDataTable
                 title={'Employee List'}
