@@ -178,8 +178,6 @@ const Employees = () => {
   const [emps, setEmps] = useState([])
   useMemo(() => handlePing('emp'), [])
 
-  // CONSTANTS
-
   const handleSetEmps = (event: SetStateAction<never[]>[]) => {
     setEmps(event[0])
   }
@@ -205,25 +203,21 @@ const Employees = () => {
                 placeholder="Name"
                 onChange={e => setName(e.target.value)}
               />
-              <br />
               <input
                 type="text"
                 placeholder="Email"
                 onChange={e => setEmail(e.target.value)}
               />
-              <br />
               <input
                 type="text"
                 placeholder="Mobile Number"
                 onChange={e => setPhone(e.target.value)}
               />
-              <br />
               <input
                 type="text"
                 placeholder="Department"
                 onChange={e => setDept(e.target.value)}
               />
-              <br />
               <button
                 className="button"
                 style={{ padding: '10px' }}
