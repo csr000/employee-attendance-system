@@ -1,4 +1,4 @@
-import React from 'react'
+import { SetStateAction, useState, useRef, useEffect } from 'react'
 import { useLocation, Route, Switch } from 'react-router-dom'
 // reactstrap components
 import { Container } from 'reactstrap'
@@ -6,14 +6,15 @@ import { Container } from 'reactstrap'
 import AdminNavbar from '../components/Navbars/AdminNavbar'
 import AdminFooter from '../components/Footers/AdminFooter'
 import Sidebar from '../components/Sidebar/Sidebar'
-
 import routes from '../routes'
+import { Context } from '../context'
+import { Attendance } from '../@types/decs'
 
 const Admin = (props: any) => {
-  const mainContent = React.useRef(null)
+  const mainContent = useRef(null)
   const location = useLocation()
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.documentElement.scrollTop = 0
     // @ts-ignore: Object is possibly 'null'.
     document.scrollingElement.scrollTop = 0
@@ -45,8 +46,23 @@ const Admin = (props: any) => {
     return 'Brand'
   }
 
+  const [emps, setEmps] = useState([])
+  const [att, setAtt] = useState([])
+
+  const handleSetAtt = (event: SetStateAction<never[]>[]) => {
+    setEmps(event[0])
+    ;(event[1] as Attendance[]).map((i: { datetime: string | Date }) => {
+      let { datetime } = i
+      datetime = new Date(datetime)
+      datetime = `${datetime.toDateString()}, ${datetime.toLocaleTimeString()}`
+      i.datetime = datetime
+      return i
+    })
+    setAtt(event[1])
+  }
+
   return (
-    <>
+    <Context.Provider value={{emps, att, handleSetAtt}}>
       <Sidebar
         {...props}
         routes={routes}
@@ -66,7 +82,7 @@ const Admin = (props: any) => {
           <AdminFooter />
         </Container>
       </div>
-    </>
+    </Context.Provider>
   )
 }
 
