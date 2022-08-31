@@ -140,11 +140,11 @@ h3 {
 
 /* form */
 
-form {
+.employee-form {
   display: flex;
 }
 
-form input {
+.employee-form input {
   padding: 10px;
   border: 2px solid #bbb;
   border-radius: 20px;
@@ -152,11 +152,11 @@ form input {
   color: #fff;
 }
 
-form ::placeholder {
+.employee-form ::placeholder {
   color: rgb(222, 222, 222);
 }
 
-form input[type='text']:focus {
+.employee-form input[type='text']:focus {
   border-color: cornflowerblue;
 }
 

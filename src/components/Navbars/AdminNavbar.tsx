@@ -60,7 +60,7 @@ const EmployeesForm = () => {
   const [phone, setPhone] = useState('')
   const [dept, setDept] = useState('')
   return (
-    <form>
+    <form className="employee-form">
       <input
         type="text"
         placeholder="Name"

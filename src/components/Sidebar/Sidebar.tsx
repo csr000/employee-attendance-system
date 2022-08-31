@@ -130,13 +130,13 @@ const Sidebar = (props: { location?: any; bgColor?: any; routes?: any; logo?: an
             <DropdownToggle nav>
               <Media className="align-items-center">
                 <span className="avatar avatar-sm rounded-circle">
-                  <img
+                  {/* <img
                     alt="..."
                     src={
                       require("../../assets/img/theme/team-1-800x800.jpg")
                         .default
                     }
-                  />
+                  /> */}
                 </span>
               </Media>
             </DropdownToggle>
@@ -217,9 +217,9 @@ const Sidebar = (props: { location?: any; bgColor?: any; routes?: any; logo?: an
           {/* Navigation */}
           <Nav navbar>{createLinks(routes)}</Nav>
           {/* Divider */}
-          <hr className="my-3" />
+          {/* <hr className="my-3" /> */}
           {/* Heading */}
-          <h6 className="navbar-heading text-muted">Documentation</h6>
+          {/* <h6 className="navbar-heading text-muted">Documentation</h6> */}
           {/* Navigation */}
           {/* <Nav className="mb-md-3" navbar>
             <NavItem>
@@ -243,7 +243,7 @@ const Sidebar = (props: { location?: any; bgColor?: any; routes?: any; logo?: an
           </Nav> */}
           <Nav className="mb-md-3" navbar>
             <NavItem className="active-pro active">
-              <NavLink href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=adr-admin-sidebar">
+              <NavLink href="#">
                 <i className="ni ni-spaceship" />
                 ....
               </NavLink>
