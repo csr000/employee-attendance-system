@@ -1,7 +1,6 @@
 import Index from './views/Index'
 import About from './views/examples/About'
 import Settings from './views/examples/Settings'
-import Tables from './views/examples/Tables'
 import Employees from './views/examples/Employees'
 
 const routes = [
@@ -31,13 +30,6 @@ const routes = [
     name: 'About',
     icon: 'ni ni-ui-04 text-yellow',
     component: About,
-    layout: '',
-  },
-  {
-    path: '/tables',
-    name: 'Tables',
-    icon: 'ni ni-bullet-list-67 text-red',
-    component: Tables,
     layout: '',
   },
 ]
