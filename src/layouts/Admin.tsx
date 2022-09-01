@@ -1,5 +1,5 @@
 import { SetStateAction, useState, useRef, useEffect } from 'react'
-import { useLocation, Route, Switch } from 'react-router-dom'
+import { useLocation, Route, Switch, Redirect } from 'react-router-dom'
 // reactstrap components
 import { Container } from 'reactstrap'
 // core components
@@ -23,9 +23,11 @@ const Admin = (props: any) => {
   }, [location])
 
   const getRoutes = (routes: any[]) => {
-    return routes.map((prop, key) => {
+    routes = routes.map((prop, key) => {
       return <Route path={prop.path} component={prop.component} key={key} />
     })
+    routes.push(<Route path={'/'} component={() => <Redirect to="/index" />} />)
+    return routes
   }
 
   const getBrandText = (path: any) => {
