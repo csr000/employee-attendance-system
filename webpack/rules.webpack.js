@@ -17,8 +17,8 @@ module.exports = [
     test: /\.(js|ts|tsx)$/,
     exclude: /node_modules/,
     use: {
-      loader: 'babel-loader'
-    }
+      loader: 'babel-loader',
+    },
   },
   {
     test: /\.(png|jpe?g|gif)$/i,
@@ -31,20 +31,20 @@ module.exports = [
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
   {
     test: /\.s[ac]ss$/i,
     use: [
-      "style-loader",
-      "css-loader",
+      'style-loader',
+      'css-loader',
       {
-        loader: "sass-loader",
+        loader: 'sass-loader',
         options: {
           // Prefer `dart-sass`
-          implementation: require("node-sass"),
+          implementation: require('node-sass'),
         },
       },
     ],
@@ -54,5 +54,9 @@ module.exports = [
     resolve: {
       fullySpecified: false,
     },
+  },
+  {
+    test: /\.svg$/,
+    loader: 'svg-inline-loader',
   },
 ]
