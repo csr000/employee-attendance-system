@@ -1,7 +1,8 @@
-import Index from './views/Index'
-import About from './views/examples/About'
-import Settings from './views/examples/Settings'
-import Employees from './views/examples/Employees'
+import Index from './views/templates/Index'
+import About from './views/templates/About'
+import Settings from './views/templates/Settings'
+import Employees from './views/templates/Employees'
+
 
 const routes = [
   {

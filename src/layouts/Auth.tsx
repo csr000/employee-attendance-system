@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useRef } from "react";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container, Row, Col } from "reactstrap";
@@ -10,16 +10,16 @@ import AuthFooter from "../components/Footers/AuthFooter";
 import routes from "../routes";
 
 const Auth = (props: any) => {
-  const mainContent = React.useRef(null);
+  const mainContent = useRef(null);
   const location = useLocation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.classList.add("bg-default");
     return () => {
       document.body.classList.remove("bg-default");
     };
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     // @ts-ignore: Object is possibly 'null'.
     document.scrollingElement.scrollTop = 0;
@@ -82,7 +82,7 @@ const Auth = (props: any) => {
           <Row className="justify-content-center">
             <Switch>
               {getRoutes(routes)}
-              {/* <Redirect from="*" to="/auth/login" /> */}
+              <Redirect from="*" to="/auth/login" />
             </Switch>
           </Row>
         </Container>

@@ -16,7 +16,7 @@ const AdminNavbar = () => {
   return (
     <>
       <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md">
-        <Container className="px-4">
+        {/* <Container className="px-4">
           <NavbarBrand to="/" tag={Link}>
             <img
               alt="..."
@@ -85,7 +85,7 @@ const AdminNavbar = () => {
               </NavItem>
             </Nav>
           </UncontrolledCollapse>
-        </Container>
+        </Container> */}
       </Navbar>
     </>
   );

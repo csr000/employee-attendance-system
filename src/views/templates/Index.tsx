@@ -5,13 +5,13 @@ import { Card, Container, Row, Col } from 'reactstrap'
 import MUIDataTable from 'mui-datatables'
 import 'react-widgets/styles.css'
 
-import Header from '../components/Headers/Header'
-import { handlePing } from './examples/utils'
-import { Context } from '../context'
+import Header from '../../components/Headers/Header'
+import { handlePing } from '../../utils'
+import { UserContext } from '../../Context'
 
 const Index = () => {
   // emps == Employees, att == Attendance
-  const {att, handleSetAtt} = useContext<any>(Context)
+  const {att, handleSetAtt} = useContext<any>(UserContext)
   
   useMemo(() => handlePing('dash'), [])
 

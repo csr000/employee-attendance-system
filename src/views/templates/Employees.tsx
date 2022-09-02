@@ -4,9 +4,9 @@ import { CardBody, Container, Row, Col } from 'reactstrap'
 import { Employee } from '../../@types/decs'
 // core components
 import Header from '../../components/Headers/Header'
-import { EMP } from '../../constants'
-import { Context } from '../../context'
-import { handlePing } from './utils'
+import { EMP } from '../../Constants'
+import { UserContext } from '../../Context'
+import { handlePing } from '../../utils'
 import '../../assets/css/custom.css'
 
 const Card = (props: Employee) => {
@@ -182,7 +182,7 @@ const Card = (props: Employee) => {
 }
 
 const Employees = () => {
-  const { emps, handleSetEmps } = useContext<any>(Context)
+  const { emps, handleSetEmps } = useContext<any>(UserContext)
   useMemo(() => handlePing('emp'), [])
 
   useEffect(() => {

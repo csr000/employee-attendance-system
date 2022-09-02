@@ -15,7 +15,7 @@ import {
 // core components
 import Header from '../../components/Headers/Header'
 
-const Maps = () => {
+const Settings = () => {
   return (
     <>
       <Header />
@@ -89,4 +89,4 @@ const Maps = () => {
   )
 }
 
-export default Maps
+export default Settings
