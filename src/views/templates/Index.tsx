@@ -19,7 +19,7 @@ const Index = () => {
     window.main.on('ipc-example', handleSetAtt)
     return () => {
       window.main.removeListener('ipc-example', handleSetAtt)
-    }
+    } 
   })
 
   const columns = [

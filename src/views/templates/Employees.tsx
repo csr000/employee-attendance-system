@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useContext } from 'react'
 // reactstrap components
-import { CardBody, Container, Row, Col } from 'reactstrap'
+import { CardBody, Container, Row, Col, Button } from 'reactstrap'
 import { Employee } from '../../@types/decs'
 // core components
 import Header from '../../components/Headers/Header'
@@ -37,32 +37,28 @@ const Card = (props: Employee) => {
             <h5>{dept}</h5>
           </div>
           <div className="btns-wrapper">
-            <button
-              type="button"
-              className="edit"
+            <Button
+              color="primary"
+              size="sm"
               onClick={() => {
                 setFirstMarginLeftValue('-110%')
                 setSecondMarginLeftValue(0)
               }}
             >
-              <p>
-                <strong>EDIT</strong>
-              </p>
-            </button>
-            <button
-              type="button"
-              className="delete"
+              Edit
+            </Button>
+            <Button
+              color="danger"
+              size="sm"
               onClick={() => {
                 window.main.sendMessage('ipc-example', [
                   { aim: EMP.DELETE, id },
                 ])
               }}
             >
-              {/* <i className="ni ni-fat-delete"></i> */}
-              <p>
-                <strong>Delete</strong>
-              </p>
-            </button>
+              {/* Delete */}
+              Delete
+            </Button>
           </div>
           <div className="phoneNo">
             <svg
@@ -154,8 +150,8 @@ const Card = (props: Employee) => {
               onChange={e => setUpdateDept(e.target.value)}
             />
             <br />
-            <button
-              type="button"
+            <Button
+              color="primary"
               onClick={() => {
                 ;[name, email, phone, dept] = [
                   updateName || name,
@@ -170,10 +166,8 @@ const Card = (props: Employee) => {
                 setFirstMarginLeftValue(0)
               }}
             >
-               <p>
-                <strong>UPDATE</strong>
-              </p>
-            </button>
+              UPDATE
+            </Button>
           </form>
         </div>
       </div>
@@ -197,10 +191,9 @@ const Employees = () => {
       <Header />
       {/* Page content */}
       <Container className="mt--7" fluid>
-        {/* Table */}
-        <Row className="mt-5">
+        <Row>
           <Col className="mb-5 mb-xl-0" xl="12">
-            <CardBody className='cards-wrapper'>
+            <CardBody className="cards-wrapper">
               {(emps as Employee[]).map(emp => (
                 <div key={emp.id}>
                   <Card
