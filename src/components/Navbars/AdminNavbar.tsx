@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 // reactstrap components
 import { Navbar, Container } from 'reactstrap'
 import TimeInput from 'react-widgets/TimeInput'
-import { EMP, TITLE } from '../../constants'
-import { Context } from '../../context'
+import { EMP, TITLE } from '../../Constants'
+import { UserContext } from '../../Context'
 import { Employee } from '../../@types/decs'
 
 const DashboardForm = () => {
   const [value, setValue] = useState()
   const [selectedLect, setSelectedLect] = useState([])
-  const { emps } = useContext<any>(Context)
+  const { emps } = useContext<any>(UserContext)
   // CONSTANTS
   const addATTENDANCE = 'add attendance'
   return (

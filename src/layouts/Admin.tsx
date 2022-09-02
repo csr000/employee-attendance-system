@@ -1,5 +1,5 @@
 import { SetStateAction, useState, useRef, useEffect } from 'react'
-import { useLocation, Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 // reactstrap components
 import { Container } from 'reactstrap'
 // core components
@@ -7,20 +7,12 @@ import AdminNavbar from '../components/Navbars/AdminNavbar'
 import AdminFooter from '../components/Footers/AdminFooter'
 import Sidebar from '../components/Sidebar/Sidebar'
 import routes from '../routes'
-import { Context } from '../context'
+import { UserContext } from '../Context'
 import { Attendance } from '../@types/decs'
+import Login from '../views/templates/Login'
 
 const Admin = (props: any) => {
   const mainContent = useRef(null)
-  const location = useLocation()
-
-  useEffect(() => {
-    document.documentElement.scrollTop = 0
-    // @ts-ignore: Object is possibly 'null'.
-    document.scrollingElement.scrollTop = 0
-    // @ts-ignore: Object is possibly 'null'.
-    mainContent.current.scrollTop = 0
-  }, [location])
 
   const getRoutes = (routes: any[]) => {
     routes = routes.map((prop, key) => {
@@ -61,29 +53,45 @@ const Admin = (props: any) => {
     setAtt(event[1])
   }
 
-  return (
-    <Context.Provider value={{ emps, handleSetEmps, att, handleSetAtt }}>
-      <Sidebar
-        {...props}
-        routes={routes}
-        logo={{
-          innerLink: '/',
-          imgSrc: require('../assets/img/brand/argon-react.png').default,
-          imgAlt: '...',
-        }}
-      />
-      <div className="main-content" ref={mainContent}>
-        <AdminNavbar
+  const [withAuth, setWithAuth] = useState<boolean>()
+  const handleAuth = (state: boolean) => {
+    setWithAuth(state)
+  }
+
+  useEffect(() => {
+    window.main.on('ipc-example-reply', handleAuth)
+    return () => {
+      window.main.removeListener('ipc-example-reply', handleAuth)
+    }
+  })
+
+  if (withAuth) {
+    return (
+      <UserContext.Provider value={{ emps, handleSetEmps, att, handleSetAtt }}>
+        <Sidebar
           {...props}
-          brandText={getBrandText(props.location.pathname)}
+          routes={routes}
+          logo={{
+            innerLink: '/',
+            imgSrc: require('../assets/img/brand/argon-react.png').default,
+            imgAlt: '...',
+          }}
         />
-        <Switch>{getRoutes(routes)}</Switch>
-        <Container fluid>
-          <AdminFooter />
-        </Container>
-      </div>
-    </Context.Provider>
-  )
+        <div className="main-content" ref={mainContent}>
+          <AdminNavbar
+            {...props}
+            brandText={getBrandText(props.location.pathname)}
+          />
+          <Switch>{getRoutes(routes)}</Switch>
+          <Container fluid>
+            <AdminFooter />
+          </Container>
+        </div>
+      </UserContext.Provider>
+    )
+  } else {
+    return <Login />
+  }
 }
 
 export default Admin

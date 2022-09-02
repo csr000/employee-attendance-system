@@ -1,69 +1,69 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
-import Database from 'better-sqlite3';
+import Database from 'better-sqlite3'
 
 let mainWindow: BrowserWindow | null
 
 // connection to the database
-const db = new Database('db.db');
+const db = new Database('db.db')
 // creating default tables
 db.prepare(
   'CREATE TABLE IF NOT EXISTS employees (id INTEGER PRIMARY KEY, name TEXT, email TEXT, phone TEXT, dept TEXT)'
-).run();
+).run()
 db.prepare(
   'CREATE TABLE IF NOT EXISTS attendance (id INTEGER PRIMARY KEY, name TEXT, email TEXT, dept TEXT, datetime TEXT)'
-).run();
+).run()
 
 db.prepare(
   'CREATE TABLE IF NOT EXISTS auth (id INTEGER PRIMARY KEY, password TEXT)'
-).run();
+).run()
 
 ipcMain.on('ipc-example', async (event, arg) => {
-  const EmpDict = arg[0];
-  console.log(EmpDict);
+  const EmpDict = arg[0]
+  console.log(EmpDict)
   // auth
   if (EmpDict.aim === 'login') {
     // todo: create a stmt to recieve pwd n compare it to the one in the db and send a response
-    // const stmt = db.prepare(
-    //   'INSERT INTO attendance (name, datetime) VALUES (?, ?)'
-    // );
-    // stmt.run(EmpDict.selectedLect, EmpDict.datetime);
-    event.reply('ipc-example-reply', true);
+    console.log('in login')
+    const stmt = db
+      .prepare('SELECT password FROM auth WHERE password = ?')
+      .get(EmpDict.pwd)
+    stmt ? event.reply('ipc-example-reply', true) : event.reply('ipc-example-reply', false)
   }
   // Attendance
   if (EmpDict.aim === 'add attendance') {
     const stmt = db.prepare(
       'INSERT INTO attendance (name, datetime) VALUES (?, ?)'
-    );
-    stmt.run(EmpDict.selectedLect, EmpDict.datetime);
+    )
+    stmt.run(EmpDict.selectedLect, EmpDict.datetime)
   }
   // Employees Info
   if (EmpDict.aim === 'create emp') {
     console.log('creating')
     const stmt = db.prepare(
       'INSERT INTO employees (name, email, phone, dept) VALUES (?, ?, ?, ?)'
-    );
-    stmt.run(EmpDict.name, EmpDict.email, EmpDict.phone, EmpDict.dept);
+    )
+    stmt.run(EmpDict.name, EmpDict.email, EmpDict.phone, EmpDict.dept)
   }
   if (EmpDict.aim === 'delete emp') {
-    const stmt = db.prepare('DELETE FROM employees WHERE id = ?');
-    stmt.run(EmpDict.id);
+    const stmt = db.prepare('DELETE FROM employees WHERE id = ?')
+    stmt.run(EmpDict.id)
   }
   if (EmpDict.aim === 'update emp') {
     const stmt = db.prepare(
       'UPDATE employees SET name = ?, email = ?, phone = ?, dept = ? WHERE id = ?'
-    );
+    )
     stmt.run(
       EmpDict.name,
       EmpDict.email,
       EmpDict.phone,
       EmpDict.dept,
       EmpDict.id
-    );
+    )
   }
-  const employees = db.prepare('SELECT * FROM employees').all();
-  const attendance = db.prepare('SELECT * FROM attendance').all();
-  event.reply('ipc-example', [employees, attendance]);
-});
+  const employees = db.prepare('SELECT * FROM employees').all()
+  const attendance = db.prepare('SELECT * FROM attendance').all()
+  event.reply('ipc-example', [employees, attendance])
+})
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string
@@ -73,7 +73,7 @@ declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string
 //     ? process.resourcesPath
 //     : app.getAppPath()
 
-function createWindow () {
+function createWindow() {
   mainWindow = new BrowserWindow({
     // icon: path.join(assetsPath, 'assets', 'icon.png'),
     width: 1100,
@@ -82,8 +82,8 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
-      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
-    }
+      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+    },
   })
 
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
@@ -93,7 +93,7 @@ function createWindow () {
   })
 }
 
-async function registerListeners () {
+async function registerListeners() {
   /**
    * This comes from bridge integration, check bridge.ts
    */
@@ -102,7 +102,8 @@ async function registerListeners () {
   })
 }
 
-app.on('ready', createWindow)
+app
+  .on('ready', createWindow)
   .whenReady()
   .then(registerListeners)
   .catch(e => console.error(e))
