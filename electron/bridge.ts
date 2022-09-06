@@ -9,7 +9,7 @@ export const api = {
    * The function below can accessed using `window.Main.sendMessage`
    */
 
-  sendMessage: (channel: string, message: any) => {
+  sendMessage: (channel: string, message: Array<string|unknown>) => {
     ipcRenderer.send(channel, message)
   },
 

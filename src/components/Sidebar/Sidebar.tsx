@@ -39,14 +39,14 @@ import moment from 'moment'
 var ps
 
 const Sidebar = (props: {
-  location?: any
+  location?: { pathname: string }
   bgColor?: any
   routes?: any
   logo?: any
 }) => {
   const [collapseOpen, setCollapseOpen] = useState<boolean>()
   // verifies if routeName is the one active (in browser input)
-  const activeRoute = (routeName: any) => {
+  const activeRoute = (routeName: string) => {
     return props.location.pathname.indexOf(routeName) > -1 ? 'active' : ''
   }
   // toggles collapse between opened and closed (true/false)

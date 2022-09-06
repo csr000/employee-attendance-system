@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useContext } from 'react'
 // reactstrap components
 import { CardBody, Container, Row, Col, Button } from 'reactstrap'
-import { Employee } from '../../@types/decs'
+import { Employee, UserContextType } from '../../@types/decs'
 // core components
 import Header from '../../components/Headers/Header'
 import { EMP } from '../../Constants'
@@ -176,7 +176,7 @@ const Card = (props: Employee) => {
 }
 
 const Employees = () => {
-  const { emps, handleSetEmps } = useContext<any>(UserContext)
+  const { emps, handleSetEmps } = useContext(UserContext) as UserContextType
   useMemo(() => handlePing('emp'), [])
 
   useEffect(() => {

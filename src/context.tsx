@@ -1,3 +1,4 @@
 import { createContext } from "react"
+import { UserContextType } from "./@types/decs";
 
-export const UserContext: any = createContext(0);
+export const UserContext = createContext<UserContextType | null>(null);

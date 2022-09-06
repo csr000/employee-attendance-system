@@ -5,12 +5,12 @@ import { Navbar, Container } from 'reactstrap'
 import TimeInput from 'react-widgets/TimeInput'
 import { EMP, TITLE } from '../../Constants'
 import { UserContext } from '../../Context'
-import { Employee } from '../../@types/decs'
+import { Employee, UserContextType } from '../../@types/decs'
 
 const DashboardForm = () => {
-  const [value, setValue] = useState()
-  const [selectedLect, setSelectedLect] = useState([])
-  const { emps } = useContext<any>(UserContext)
+  const [value, setValue] = useState<string|undefined>()
+  const [selectedLect, setSelectedLect] = useState("")
+  const { emps } = useContext(UserContext) as UserContextType
   // CONSTANTS
   const addATTENDANCE = 'add attendance'
   return (
@@ -18,7 +18,7 @@ const DashboardForm = () => {
       {/* add attendance */}
       <select
         name="emps"
-        onChange={(e: any) => setSelectedLect(e.target.value)}
+        onChange={(e) => setSelectedLect(e.target.value)}
       >
         <option value="">--Choose {TITLE}--</option>
         {(emps as Employee[]).map(emp => (
@@ -31,7 +31,7 @@ const DashboardForm = () => {
         use12HourClock
         // @ts-ignore
         defaultValue={new Date()}
-        onChange={(v: any) => setValue(v?.toString())}
+        onChange={(v) => setValue(v?.toString())}
         style={{ width: 'auto' }}
       />
       <button
@@ -106,7 +106,7 @@ const getForm = (brandtext: string) => {
   }
 }
 
-const AdminNavbar = (props: any) => {
+const AdminNavbar = (props: { brandText: {} | null | undefined }) => {
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -117,7 +117,7 @@ const AdminNavbar = (props: any) => {
           >
             {props.brandText}
           </Link>
-          {getForm(props.brandText)}
+          {getForm(props.brandText as string)}
         </Container>
       </Navbar>
     </>

@@ -8,10 +8,11 @@ import 'react-widgets/styles.css'
 import Header from '../../components/Headers/Header'
 import { handlePing } from '../../utils'
 import { UserContext } from '../../Context'
+import { UserContextType } from '../../@types/decs'
 
 const Index = () => {
   // emps == Employees, att == Attendance
-  const {att, handleSetAtt} = useContext<any>(UserContext)
+  const {att, handleSetAtt} = useContext(UserContext) as UserContextType
   
   useMemo(() => handlePing('dash'), [])
 

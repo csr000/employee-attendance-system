@@ -1,3 +1,4 @@
+import { SetStateAction } from 'react';
 declare module 'layouts/*'
 declare module 'assets/*'
 declare module 'components/*'
@@ -18,4 +19,11 @@ export declare type Employee = {
   email: string
   phone: string
   dept: string
+}
+
+export declare type UserContextType = {
+  emps: never[],
+  handleSetEmps: (event: SetStateAction<never[]>[]) => void,
+  att: never[],
+  handleSetAtt: (event: SetStateAction<never[]>[]) => void
 }
