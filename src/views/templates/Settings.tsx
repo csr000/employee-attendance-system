@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Card, Container, Row, FormGroup, Form, Input, Col, CardHeader, Button, CardBody } from 'reactstrap'
 
 import Header from '../../components/Headers/Header'
+import { ipcCHANNEL, REPLIES } from '../../Constants'
 
 const Settings = () => {
   const [currentPwd, setCurrentPwd] = useState<string>()
@@ -18,16 +19,15 @@ const Settings = () => {
     //  once main gets it, checks if it matches data in db,
     // if yes update and reply true else reply false
     if (newPwd === confirmPwd) {
-      window.main.sendMessage('ipc-example', [{ aim: reset, newPwd, currentPwd }])
+      window.main.sendMessage(ipcCHANNEL, [{ aim: reset, newPwd, currentPwd }])
       setErrorMsg('')
     } else {
       setErrorMsg('New password does not match Confirm password')
     }
-    window.main.once('resetpwd', handleUpdateIsSuccess)
+    window.main.once(REPLIES.RESETpwd, handleUpdateIsSuccess)
   }
   
   const handleUpdateIsSuccess = (state: boolean) => {
-    console.log("handleUpdateIsSuccess state", state)
     setUpdateIsSuccess(state)
   }
   

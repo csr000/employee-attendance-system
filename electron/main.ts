@@ -1,5 +1,6 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 import Database from 'better-sqlite3'
+import { ipcCHANNEL, REPLIES } from '../src/Constants'
 
 let mainWindow: BrowserWindow | null
 
@@ -17,17 +18,23 @@ db.prepare(
   'CREATE TABLE IF NOT EXISTS auth (id INTEGER PRIMARY KEY, password TEXT)'
 ).run()
 
-ipcMain.on('ipc-example', async (event, arg) => {
+ipcMain.on(ipcCHANNEL, async (event, arg) => {
   const EmpDict = arg[0]
   console.log(EmpDict)
   // auth
   if (EmpDict.aim === 'login') {
-    // todo: create a stmt to recieve pwd n compare it to the one in the db and send a response
-    console.log('in login')
     const stmt = db
       .prepare('SELECT password FROM auth WHERE password = ?')
       .get(EmpDict.pwd)
-    stmt ? event.reply('ipc-example-reply', true) : event.reply('ipc-example-reply', false)
+    stmt
+      ? event.reply(REPLIES.LOGIN, true)
+      : event.reply(REPLIES.LOGIN, false)
+  }
+  // reset pwd
+  if (EmpDict.aim === 'resetpwd') {
+    const stmt = db.prepare('UPDATE auth SET password = ? WHERE password = ?')
+    const info = stmt.run(EmpDict.newPwd, EmpDict.currentPwd)
+    info.changes ? event.reply(REPLIES.RESETpwd, true) : event.reply(REPLIES.RESETpwd, false)
   }
   // Attendance
   if (EmpDict.aim === 'add attendance') {
@@ -62,8 +69,10 @@ ipcMain.on('ipc-example', async (event, arg) => {
   }
   const employees = db.prepare('SELECT * FROM employees').all()
   const attendance = db.prepare('SELECT * FROM attendance').all()
-  event.reply('ipc-example', [employees, attendance])
+  event.reply(ipcCHANNEL, [employees, attendance])
 })
+
+
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string

@@ -19,11 +19,12 @@ import moment from 'moment'
 
 // core components
 import AuthNavbar from '../../components/Navbars/AuthNavbar'
+import { AUTH, ipcCHANNEL } from '../../Constants'
 
 const Login = () => {
   const [pwd, setPwd] = useState('')
-  // CONSTANTS
-  const auth = 'login'
+
+  
   return (
     <div className="main-content bg-gradient-info" style={{ height: '100vh' }}>
       <AuthNavbar />
@@ -100,8 +101,8 @@ const Login = () => {
                         color="primary"
                         type="button"
                         onClick={() =>
-                          window.main.sendMessage('ipc-example', [
-                            { aim: auth, pwd },
+                          window.main.sendMessage(ipcCHANNEL, [
+                            { aim: AUTH.LOGIN, pwd },
                           ])
                         }
                       >

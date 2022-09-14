@@ -10,6 +10,7 @@ import routes from '../routes'
 import { UserContext } from '../Context'
 import { Attendance } from '../@types/decs'
 import Login from '../views/templates/Login'
+import { REPLIES } from '../Constants'
 
 const Admin = (props: any) => {
   const mainContent = useRef(null)
@@ -22,18 +23,16 @@ const Admin = (props: any) => {
     return routes
   }
 
-  const getBrandText = (path: any) => {
+  const getBrandText = () => {
     for (let i = 0; i < routes.length; i++) {
-      if (
-        props.location.pathname.indexOf(routes[i].layout + routes[i].path) !==
-        -1
-      ) {
+      if (props.location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
         return routes[i].name
       }
     }
     return 'Brand'
   }
 
+  // emps == Employees, att == Attendance
   const [emps, setEmps] = useState([])
   const [att, setAtt] = useState([])
 
@@ -42,6 +41,7 @@ const Admin = (props: any) => {
   }
 
   const handleSetAtt = (event: SetStateAction<never[]>[]) => {
+    console.log('event', event)
     setEmps(event[0])
     ;(event[1] as Attendance[]).map((i: { datetime: string | Date }) => {
       let { datetime } = i
@@ -59,9 +59,9 @@ const Admin = (props: any) => {
   }
 
   useEffect(() => {
-    window.main.on('ipc-example-reply', handleAuth)
+    window.main.on(REPLIES.LOGIN, handleAuth)
     return () => {
-      window.main.removeListener('ipc-example-reply', handleAuth)
+      window.main.removeListener(REPLIES.LOGIN, handleAuth)
     }
   })
 
@@ -78,10 +78,7 @@ const Admin = (props: any) => {
           }}
         />
         <div className="main-content" ref={mainContent}>
-          <AdminNavbar
-            {...props}
-            brandText={getBrandText(props.location.pathname)}
-          />
+          <AdminNavbar {...props} brandText={getBrandText()} />
           <Switch>{getRoutes(routes)}</Switch>
           <Container fluid>
             <AdminFooter />

@@ -3,23 +3,19 @@ import { Link } from 'react-router-dom'
 // reactstrap components
 import { Navbar, Container } from 'reactstrap'
 import TimeInput from 'react-widgets/TimeInput'
-import { EMP, TITLE } from '../../Constants'
+import { ATT, EMP, ipcCHANNEL, TITLE } from '../../Constants'
 import { UserContext } from '../../Context'
 import { Employee, UserContextType } from '../../@types/decs'
 
 const DashboardForm = () => {
-  const [value, setValue] = useState<string|undefined>()
-  const [selectedLect, setSelectedLect] = useState("")
+  const [value, setValue] = useState<string>()
+  const [selectedLect, setSelectedLect] = useState('')
   const { emps } = useContext(UserContext) as UserContextType
   // CONSTANTS
-  const addATTENDANCE = 'add attendance'
   return (
     <form className="box">
       {/* add attendance */}
-      <select
-        name="emps"
-        onChange={(e) => setSelectedLect(e.target.value)}
-      >
+      <select name="emps" onChange={e => setSelectedLect(e.target.value)}>
         <option value="">--Choose {TITLE}--</option>
         {(emps as Employee[]).map(emp => (
           <option key={emp.id} value={emp.name}>
@@ -31,7 +27,7 @@ const DashboardForm = () => {
         use12HourClock
         // @ts-ignore
         defaultValue={new Date()}
-        onChange={(v) => setValue(v?.toString())}
+        onChange={v => setValue(v?.toString())}
         style={{ width: 'auto' }}
       />
       <button
@@ -39,13 +35,7 @@ const DashboardForm = () => {
         type="button"
         onClick={() => {
           const datetime = value || Date()
-          window.main.sendMessage('ipc-example', [
-            {
-              aim: addATTENDANCE,
-              selectedLect,
-              datetime,
-            },
-          ])
+          window.main.sendMessage(ipcCHANNEL, [{ aim: ATT.ADD, selectedLect, datetime }])
         }}
       >
         Add Attendance
@@ -61,33 +51,15 @@ const EmployeesForm = () => {
   const [dept, setDept] = useState('')
   return (
     <form className="employee-form">
-      <input
-        type="text"
-        placeholder="Name"
-        onChange={e => setName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Email"
-        onChange={e => setEmail(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Mobile Number"
-        onChange={e => setPhone(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Department"
-        onChange={e => setDept(e.target.value)}
-      />
+      <input type="text" placeholder="Name" onChange={e => setName(e.target.value)} />
+      <input type="text" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+      <input type="text" placeholder="Mobile Number" onChange={e => setPhone(e.target.value)} />
+      <input type="text" placeholder="Department" onChange={e => setDept(e.target.value)} />
       <button
         className="add-btn"
         type="button"
         onClick={() => {
-          window.main.sendMessage('ipc-example', [
-            { aim: EMP.CREATE, name, email, phone, dept },
-          ])
+          window.main.sendMessage(ipcCHANNEL, [{ aim: EMP.CREATE, name, email, phone, dept }])
         }}
       >
         Add {TITLE}
@@ -111,10 +83,7 @@ const AdminNavbar = (props: { brandText: {} | null | undefined }) => {
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
         <Container fluid>
-          <Link
-            className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
-            to="/"
-          >
+          <Link className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" to="/">
             {props.brandText}
           </Link>
           {getForm(props.brandText as string)}

@@ -6,21 +6,21 @@ import MUIDataTable from 'mui-datatables'
 import 'react-widgets/styles.css'
 
 import Header from '../../components/Headers/Header'
-import { handlePing } from '../../utils'
+import { ping } from '../../utils'
 import { UserContext } from '../../Context'
 import { UserContextType } from '../../@types/decs'
+import { ipcCHANNEL } from '../../Constants'
 
 const Index = () => {
-  // emps == Employees, att == Attendance
-  const {att, handleSetAtt} = useContext(UserContext) as UserContextType
-  
-  useMemo(() => handlePing('dash'), [])
+  const { att, handleSetAtt } = useContext(UserContext) as UserContextType
+
+  useMemo(() => ping('dash'), [])
 
   useEffect(() => {
-    window.main.on('ipc-example', handleSetAtt)
+    window.main.on(ipcCHANNEL, handleSetAtt)
     return () => {
-      window.main.removeListener('ipc-example', handleSetAtt)
-    } 
+      window.main.removeListener(ipcCHANNEL, handleSetAtt)
+    }
   })
 
   const columns = [
@@ -53,12 +53,7 @@ const Index = () => {
         <Row className="mt-5">
           <Col className="mb-5 mb-xl-0" xl="12">
             <Card className="shadow">
-              <MUIDataTable
-                title={'Attendance'}
-                data={att}
-                columns={columns}
-                options={options}
-              />
+              <MUIDataTable title={'Attendance'} data={att} columns={columns} options={options} />
             </Card>
           </Col>
         </Row>

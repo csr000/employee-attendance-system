@@ -4,9 +4,9 @@ import { CardBody, Container, Row, Col, Button } from 'reactstrap'
 import { Employee, UserContextType } from '../../@types/decs'
 // core components
 import Header from '../../components/Headers/Header'
-import { EMP } from '../../Constants'
+import { EMP, ipcCHANNEL } from '../../Constants'
 import { UserContext } from '../../Context'
-import { handlePing } from '../../utils'
+import { ping } from '../../utils'
 import '../../assets/css/custom.css'
 
 const Card = (props: Employee) => {
@@ -16,12 +16,8 @@ const Card = (props: Employee) => {
   const [updateEmail, setUpdateEmail] = useState(email)
   const [updatePhone, setUpdatePhone] = useState(phone)
   const [updateDept, setUpdateDept] = useState(dept)
-  const [firstMarginLeftValue, setFirstMarginLeftValue] = useState<
-    string | number
-  >(0)
-  const [secondMarginLeftValue, setSecondMarginLeftValue] = useState<
-    string | number
-  >('-110%')
+  const [firstMarginLeftValue, setFirstMarginLeftValue] = useState<string | number>(0)
+  const [secondMarginLeftValue, setSecondMarginLeftValue] = useState<string | number>('-110%')
   return (
     <>
       <div className="front-side">
@@ -51,12 +47,9 @@ const Card = (props: Employee) => {
               color="danger"
               size="sm"
               onClick={() => {
-                window.main.sendMessage('ipc-example', [
-                  { aim: EMP.DELETE, id },
-                ])
+                window.main.sendMessage(ipcCHANNEL, [{ aim: EMP.DELETE, id }])
               }}
             >
-              {/* Delete */}
               Delete
             </Button>
           </div>
@@ -79,10 +72,7 @@ const Card = (props: Employee) => {
                   d="m236.406,404.552c-13.545,0-24.564,11.02-24.564,24.565s11.02,24.564 24.564,24.564 24.564-11.02 24.564-24.564-11.019-24.565-24.564-24.565zm0,39.129c-8.031,0-14.564-6.534-14.564-14.564 0-8.031 6.533-14.565 14.564-14.565s14.564,6.534 14.564,14.565c0,8.03-6.533,14.564-14.564,14.564z"
                   fill="#FFFFFF"
                 />
-                <path
-                  d="m202.406,47.645h68c2.762,0 5-2.239 5-5s-2.238-5-5-5h-68c-2.762,0-5,2.239-5,5s2.238,5 5,5z"
-                  fill="#FFFFFF"
-                />
+                <path d="m202.406,47.645h68c2.762,0 5-2.239 5-5s-2.238-5-5-5h-68c-2.762,0-5,2.239-5,5s2.238,5 5,5z" fill="#FFFFFF" />
                 <path
                   d="m184.409,47.645c1.31,0 2.6-0.53 3.53-1.46 0.93-0.94 1.47-2.22 1.47-3.54s-0.54-2.6-1.47-3.54c-0.931-0.93-2.221-1.46-3.53-1.46-1.32,0-2.601,0.53-3.54,1.46-0.93,0.93-1.46,2.22-1.46,3.54s0.53,2.6 1.46,3.54c0.93,0.93 2.22,1.46 3.54,1.46z"
                   fill="#FFFFFF"
@@ -117,51 +107,21 @@ const Card = (props: Employee) => {
             </p>
           </div>
         </div>
-        <div
-          className="info-grid-edit"
-          style={{ marginLeft: secondMarginLeftValue }}
-        >
+        <div className="info-grid-edit" style={{ marginLeft: secondMarginLeftValue }}>
           <form>
-            <input
-              type="text"
-              placeholder="Name"
-              defaultValue={name}
-              onChange={e => setUpdateName(e.target.value)}
-            />
+            <input type="text" placeholder="Name" defaultValue={name} onChange={e => setUpdateName(e.target.value)} />
             <br />
-            <input
-              type="text"
-              placeholder="Email"
-              defaultValue={email}
-              onChange={e => setUpdateEmail(e.target.value)}
-            />
+            <input type="text" placeholder="Email" defaultValue={email} onChange={e => setUpdateEmail(e.target.value)} />
             <br />
-            <input
-              type="text"
-              placeholder="Mobile Number"
-              defaultValue={phone}
-              onChange={e => setUpdatePhone(e.target.value)}
-            />
+            <input type="text" placeholder="Mobile Number" defaultValue={phone} onChange={e => setUpdatePhone(e.target.value)} />
             <br />
-            <input
-              type="text"
-              placeholder="Department"
-              defaultValue={dept}
-              onChange={e => setUpdateDept(e.target.value)}
-            />
+            <input type="text" placeholder="Department" defaultValue={dept} onChange={e => setUpdateDept(e.target.value)} />
             <br />
             <Button
               color="primary"
               onClick={() => {
-                ;[name, email, phone, dept] = [
-                  updateName || name,
-                  updateEmail || email,
-                  updatePhone || phone,
-                  updateDept || dept,
-                ]
-                window.main.sendMessage('ipc-example', [
-                  { aim: EMP.UPDATE, name, email, phone, dept, id },
-                ])
+                ;[name, email, phone, dept] = [updateName || name, updateEmail || email, updatePhone || phone, updateDept || dept]
+                window.main.sendMessage(ipcCHANNEL, [{ aim: EMP.UPDATE, name, email, phone, dept, id }])
                 setSecondMarginLeftValue('-110%')
                 setFirstMarginLeftValue(0)
               }}
@@ -177,13 +137,13 @@ const Card = (props: Employee) => {
 
 const Employees = () => {
   const { emps, handleSetEmps } = useContext(UserContext) as UserContextType
-  useMemo(() => handlePing('emp'), [])
+  useMemo(() => ping('emp'), [])
 
   useEffect(() => {
-    window.main.on('ipc-example', handleSetEmps)
-    // handlePing()
+    window.main.on(ipcCHANNEL, handleSetEmps)
+    // ping()
     return () => {
-      window.main.removeListener('ipc-example', handleSetEmps)
+      window.main.removeListener(ipcCHANNEL, handleSetEmps)
     }
   })
   return (
@@ -196,13 +156,7 @@ const Employees = () => {
             <CardBody className="cards-wrapper">
               {(emps as Employee[]).map(emp => (
                 <div key={emp.id}>
-                  <Card
-                    id={emp.id}
-                    name={emp.name}
-                    email={emp.email}
-                    phone={emp.phone}
-                    dept={emp.dept}
-                  />
+                  <Card id={emp.id} name={emp.name} email={emp.email} phone={emp.phone} dept={emp.dept} />
                 </div>
               ))}
             </CardBody>
