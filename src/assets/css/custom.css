@@ -143,24 +143,25 @@ h3 {
 /* form */
 
 .employee-form {
-  display: flex;
+  /* display: flex; */
 }
 
 .employee-form input {
-  padding: 10px;
-  border: 2px solid #bbb;
-  border-radius: 20px;
+  /* padding: 10px;
+
   background-color: transparent;
-  color: #fff;
+  color: #fff; */
+  border-radius: 10px;
+  border: 2px solid #bbb;
 }
 
-.employee-form ::placeholder {
+/* .employee-form ::placeholder {
   color: rgb(222, 222, 222);
-}
+} */
 
-.employee-form input[type='text']:focus {
+/* .employee-form input[type='text']:focus {
   border-color: cornflowerblue;
-}
+} */
 
 .add-btn {
   border-radius: 20px;
