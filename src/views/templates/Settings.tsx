@@ -1,21 +1,41 @@
 // reactstrap components
-import {
-  Card,
-  Container,
-  Row,
-  FormGroup,
-  Form,
-  Input,
-  Col,
-  CardHeader,
-  Button,
-  CardBody,
-} from 'reactstrap'
+import { useEffect, useState } from 'react'
+import { Card, Container, Row, FormGroup, Form, Input, Col, CardHeader, Button, CardBody } from 'reactstrap'
 
-// core components
 import Header from '../../components/Headers/Header'
 
 const Settings = () => {
+  const [currentPwd, setCurrentPwd] = useState<string>()
+  const [newPwd, setNewPwd] = useState<string>()
+  const [confirmPwd, setConfirmPwd] = useState<string>()
+  const [errorMsg, setErrorMsg] = useState<string>()
+  const [updateIsSuccess, setUpdateIsSuccess] = useState<boolean>(true)
+  // CONSTANTS
+  const reset = 'resetpwd'
+
+  const validate = () => {
+    // compare pwds, if new === confirm proceed to send it to main,
+    //  once main gets it, checks if it matches data in db,
+    // if yes update and reply true else reply false
+    if (newPwd === confirmPwd) {
+      window.main.sendMessage('ipc-example', [{ aim: reset, newPwd, currentPwd }])
+      setErrorMsg('')
+    } else {
+      setErrorMsg('New password does not match Confirm password')
+    }
+    window.main.once('resetpwd', handleUpdateIsSuccess)
+  }
+  
+  const handleUpdateIsSuccess = (state: boolean) => {
+    console.log("handleUpdateIsSuccess state", state)
+    setUpdateIsSuccess(state)
+  }
+  
+
+  useEffect(() => {
+    updateIsSuccess ? setErrorMsg('') : setErrorMsg('Current password is incorrect')
+  })
+
   return (
     <>
       <Header />
@@ -31,12 +51,7 @@ const Settings = () => {
                       <h3 className="mb-0">Password Settings</h3>
                     </Col>
                     <Col className="text-right" xs="4">
-                      <Button
-                        color="primary"
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
-                        size="sm"
-                      >
+                      <Button color="primary" onClick={validate} size="sm">
                         Save
                       </Button>
                     </Col>
@@ -45,14 +60,15 @@ const Settings = () => {
                 <CardBody>
                   <Form>
                     <div className="pl-lg-4">
+                      <p style={{ color: 'red' }}>{errorMsg}</p>
                       <Row>
                         <Col md="12">
                           <FormGroup>
-
                             <Input
                               className="form-control-alternative"
                               placeholder="Current Password"
                               type="text"
+                              onChange={e => setCurrentPwd(e.target.value)}
                             />
                           </FormGroup>
                         </Col>
@@ -64,6 +80,7 @@ const Settings = () => {
                               className="form-control-alternative"
                               placeholder="New Password"
                               type="text"
+                              onChange={e => setNewPwd(e.target.value)}
                             />
                           </FormGroup>
                         </Col>
@@ -73,6 +90,7 @@ const Settings = () => {
                               className="form-control-alternative"
                               placeholder="Confirm New Password"
                               type="text"
+                              onChange={e => setConfirmPwd(e.target.value)}
                             />
                           </FormGroup>
                         </Col>
