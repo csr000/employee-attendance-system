@@ -1,8 +1,8 @@
 Arguments: 
-  D:\Program Files\nodejs\node.exe C:\Users\ricchfrvr\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add --dev @types/better-sqlite3`
+  D:\Program Files\nodejs\node.exe C:\Users\ricchfrvr\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add animate.css
 
 PATH: 
-  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;D:\Program Files\nodejs\;D:\Program Files (x86)\Git\cmd;D:\Program Files (x86)\Git\mingw32\bin;D:\Program Files (x86)\Git\usr\bin;C:\Users\ricchfrvr\AppData\Local\Programs\Python\Python310;C:\Users\ricchfrvr\AppData\Local\Programs\Python\Python310\Scripts;D:\Program Files (x86)\platform-tools;C:\Users\ricchfrvr\AppData\Local\Microsoft\WindowsApps;C:\Users\ricchfrvr\AppData\Roaming\npm
+  C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\libnvvp;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;D:\Program Files\nodejs\;D:\Program Files (x86)\Git\cmd;D:\Program Files (x86)\Git\mingw32\bin;D:\Program Files (x86)\Git\usr\bin;C:\Users\ricchfrvr\AppData\Local\Programs\Python\Python38;C:\Users\ricchfrvr\AppData\Local\Programs\Python\Python38\Scripts;D:\Program Files (x86)\platform-tools;C:\Program Files\NVIDIA Corporation\Nsight Compute 2022.1.0\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\ricchfrvr\.cargo\bin;C:\Users\ricchfrvr\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\ricchfrvr\AppData\Local\Programs\Python\Python38\;C:\Users\ricchfrvr\AppData\Local\Microsoft\WindowsApps;C:\Users\ricchfrvr\AppData\Roaming\npm
 
 Yarn version: 
   1.22.18
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fbetter-sqlite3%60: Not found
-      at Request.params.callback [as _callback] (C:\Users\ricchfrvr\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66138:18)
-      at Request.self.callback (C:\Users\ricchfrvr\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
-      at Request.emit (node:events:527:28)
-      at Request.<anonymous> (C:\Users\ricchfrvr\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141855:10)
-      at Request.emit (node:events:527:28)
-      at IncomingMessage.<anonymous> (C:\Users\ricchfrvr\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141777:12)
-      at Object.onceWrapper (node:events:641:28)
-      at IncomingMessage.emit (node:events:539:35)
-      at endReadableNT (node:internal/streams/readable:1345:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+  Error: EPERM: operation not permitted, copyfile 'C:\Users\ricchfrvr\AppData\Local\Yarn\Cache\v6\npm-@marshallofsound-webpack-asset-relocator-loader-0.5.0-e764e9c1edf7dfc0db7aa5d67767f4f6f0a681c5-integrity\node_modules\@marshallofsound\webpack-asset-relocator-loader\package.json' -> 'F:\employee-attendance-system\node_modules\@marshallofsound\webpack-asset-relocator-loader\package.json'
 
 npm manifest: 
   {
@@ -53,6 +43,7 @@ npm manifest:
       "bootstrap": "4.6.0",
       "chart.js": "2.9.4",
       "classnames": "2.3.1",
+      "electronmon": "^2.0.2",
       "moment": "2.29.1",
       "mui-datatables": "^4.2.2",
       "node-sass-package-importer": "^5.3.2",
@@ -61,6 +52,7 @@ npm manifest:
       "react-dom": "17.0.2",
       "react-hot-loader": "4.13.0",
       "react-router-dom": "^5.3.1",
+      "react-widgets": "^5.8.4",
       "reactstrap": "8.9.0",
       "styled-components": "5.3.0",
       "yarn-audit-fix": "^9.3.5"
@@ -80,6 +72,7 @@ npm manifest:
       "@marshallofsound/webpack-asset-relocator-loader": "0.5.0",
       "@testing-library/jest-dom": "5.14.1",
       "@testing-library/react": "11.2.7",
+      "@types/better-sqlite3": "^7.6.0",
       "@types/chart.js": "^2.9.37",
       "@types/electron-devtools-installer": "2.2.0",
       "@types/jest": "26.0.23",
@@ -111,6 +104,7 @@ npm manifest:
       "sass": "^1.54.4",
       "sass-loader": "^13.0.2",
       "style-loader": "^3.3.1",
+      "svg-inline-loader": "^0.8.2",
       "ts-jest": "27.0.3",
       "typescript": "4.3.4",
       "wait-on": "5.3.0",
@@ -1386,7 +1380,7 @@ Lockfile:
       core-js-pure "^3.20.2"
       regenerator-runtime "^0.13.4"
   
-  "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.17.2", "@babel/runtime@^7.18.3", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.7":
+  "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.17.2", "@babel/runtime@^7.18.3", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.7":
     version "7.18.9"
     resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.18.9.tgz#b4fcfce55db3d2e5e080d2490f608a3b9f407f4a"
     integrity sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==
@@ -2448,6 +2442,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@react-dnd/shallowequal/-/shallowequal-2.0.0.tgz#a3031eb54129f2c66b2753f8404266ec7bf67f0a"
     integrity sha512-Pc/AFTdwZwEKJxFJvlxrSmGe/di+aAOBn60sremrpLo6VI/6cmiUYNNwlI5KNYttg7uypzA3ILPMPgxB2GYZEg==
   
+  "@restart/hooks@^0.4.5":
+    version "0.4.7"
+    resolved "https://registry.yarnpkg.com/@restart/hooks/-/hooks-0.4.7.tgz#d79ca6472c01ce04389fc73d4a79af1b5e33cd39"
+    integrity sha512-ZbjlEHcG+FQtpDPHd7i4FzNNvJf2enAwZfJbpM8CW7BhmOAbsHpZe3tsHwfQUrBuyrxWqPYp2x5UMnilWcY22A==
+    dependencies:
+      dequal "^2.0.2"
+  
   "@sideway/address@^4.1.0":
     version "4.1.2"
     resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.2.tgz#811b84333a335739d3969cfc434736268170cad1"
@@ -2601,6 +2602,13 @@ Lockfile:
     dependencies:
       "@babel/types" "^7.3.0"
   
+  "@types/better-sqlite3@^7.6.0":
+    version "7.6.0"
+    resolved "https://registry.yarnpkg.com/@types/better-sqlite3/-/better-sqlite3-7.6.0.tgz#603d1c7a72527dd946e2bf641ed4c0b74a547423"
+    integrity sha512-rnSP9vY+fVsF3iJja5yRGBJV63PNBiezJlYrCkqUmQWFoB16cxAHwOkjsAYEu317miOfKaJpa65cbp0P4XJ/jw==
+    dependencies:
+      "@types/node" "*"
+  
   "@types/cacheable-request@^6.0.1":
     version "6.0.1"
     resolved "https://registry.yarnpkg.com/@types/cacheable-request/-/cacheable-request-6.0.1.tgz#5d22f3dded1fd3a84c0bbeb5039a7419c2c91976"
@@ -2617,6 +2625,13 @@ Lockfile:
     integrity sha512-9bosRfHhkXxKYfrw94EmyDQcdjMaQPkU1fH2tDxu8DWXxf1mjzWQAV4laJF51ZbC2ycYwNDvIm1rGez8Bug0vg==
     dependencies:
       moment "^2.10.2"
+  
+  "@types/classnames@^2.3.1":
+    version "2.3.1"
+    resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.3.1.tgz#3c2467aa0f1a93f1f021e3b9bcf938bd5dfdc0dd"
+    integrity sha512-zeOWb0JGBoVmlQoznvqXbE0tEC/HONsnoUNH19Hc96NFsTAwTXbTqb8FMYkru1F/iqp7a18Ws3nWJvtA1sHD1A==
+    dependencies:
+      classnames "*"
   
   "@types/color-name@^1.1.1":
     version "1.1.1"
@@ -2898,7 +2913,7 @@ Lockfile:
       "@types/history" "^4.7.11"
       "@types/react" "*"
   
-  "@types/react-transition-group@^4.2.0", "@types/react-transition-group@^4.4.5":
+  "@types/react-transition-group@^4.2.0", "@types/react-transition-group@^4.4.4", "@types/react-transition-group@^4.4.5":
     version "4.4.5"
     resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.5.tgz#aae20dcf773c5aa275d5b9f7cdbca638abc5e416"
     integrity sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==
@@ -2917,6 +2932,15 @@ Lockfile:
     version "17.0.11"
     resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.11.tgz#67fcd0ddbf5a0b083a0f94e926c7d63f3b836451"
     integrity sha512-yFRQbD+whVonItSk7ZzP/L+gPTJVBkL/7shLEF+i9GC/1cV3JmUxEQz6+9ylhUpWSDuqo1N9qEvqS6vTj4USUA==
+    dependencies:
+      "@types/prop-types" "*"
+      "@types/scheduler" "*"
+      csstype "^3.0.2"
+  
+  "@types/react@>=16.9.11":
+    version "18.0.17"
+    resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.17.tgz#4583d9c322d67efe4b39a935d223edcc7050ccf4"
+    integrity sha512-38ETy4tL+rn4uQQi7mB81G7V1g0u2ryquNmsVIOKUAEIDK+3CUjZ6rSRpdvS99dNBnkLFL83qfmtLacGOTIhwQ==
     dependencies:
       "@types/prop-types" "*"
       "@types/scheduler" "*"
@@ -4440,7 +4464,7 @@ Lockfile:
       isobject "^3.0.0"
       static-extend "^0.1.1"
   
-  classnames@2.3.1, classnames@^2.2.3:
+  classnames@*, classnames@2.3.1, classnames@^2.2.3, classnames@^2.3.1:
     version "2.3.1"
     resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
     integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
@@ -4966,6 +4990,11 @@ Lockfile:
       whatwg-mimetype "^2.3.0"
       whatwg-url "^8.0.0"
   
+  date-arithmetic@^4.0.1:
+    version "4.1.0"
+    resolved "https://registry.yarnpkg.com/date-arithmetic/-/date-arithmetic-4.1.0.tgz#e5d6434e9deb71f79760a37b729e4a515e730ddf"
+    integrity sha512-QWxYLR5P/6GStZcdem+V1xoto6DMadYWpMXU82ES3/RfR3Wdwr3D0+be7mgOJ+Ov0G9D5Dmb9T17sNLQYj9XOg==
+  
   debug@2.6.9, debug@^2.1.3, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
     version "2.6.9"
     resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -5164,6 +5193,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
     integrity sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
   
+  dequal@^2.0.2:
+    version "2.0.3"
+    resolved "https://registry.yarnpkg.com/dequal/-/dequal-2.0.3.tgz#2644214f1997d39ed0ee0ece72335490a7ac67be"
+    integrity sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==
+  
   destroy@~1.0.4:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
@@ -5278,7 +5312,7 @@ Lockfile:
     dependencies:
       "@babel/runtime" "^7.1.2"
   
-  dom-helpers@^5.0.1, dom-helpers@^5.1.3:
+  dom-helpers@^5.0.1, dom-helpers@^5.1.3, dom-helpers@^5.2.1:
     version "5.2.1"
     resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-5.2.1.tgz#d9400536b2bf8225ad98fe052e029451ac40e902"
     integrity sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==
@@ -5506,6 +5540,16 @@ Lockfile:
       "@electron/get" "^1.0.1"
       "@types/node" "^14.6.2"
       extract-zip "^1.0.3"
+  
+  electronmon@^2.0.2:
+    version "2.0.2"
+    resolved "https://registry.yarnpkg.com/electronmon/-/electronmon-2.0.2.tgz#082cb4c7cd5eee0602308c3253b17ecbef77aea8"
+    integrity sha512-Yw1CXEp5HJT9P6Sns3UP3Krwm5eb2JKqTRAVczKdsUa+U/dMTgONwKIHkPbKSSmtyTV+5JwobxkhFPiRgegObA==
+    dependencies:
+      chalk "^3.0.0"
+      import-from "^3.0.0"
+      runtime-required "^1.1.0"
+      watchboy "^0.4.3"
   
   emittery@^0.8.1:
     version "0.8.1"
@@ -7272,6 +7316,13 @@ Lockfile:
       parent-module "^1.0.0"
       resolve-from "^4.0.0"
   
+  import-from@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/import-from/-/import-from-3.0.0.tgz#055cfec38cd5a27d8057ca51376d7d3bf0891966"
+    integrity sha512-CiuXOFFSzkU5x/CR0+z7T91Iht4CXgfCxVOFRhh2Zyhg5wOpWvvDLQUsWl+gcN+QscYBjez8hDCt85O7RLDttQ==
+    dependencies:
+      resolve-from "^5.0.0"
+  
   import-local@^3.0.2:
     version "3.0.2"
     resolved "https://registry.yarnpkg.com/import-local/-/import-local-3.0.2.tgz#a8cfd0431d1de4a2199703d003e3e62364fa6db6"
@@ -7363,6 +7414,13 @@ Lockfile:
       get-intrinsic "^1.1.0"
       has "^1.0.3"
       side-channel "^1.0.4"
+  
+  invariant@^2.2.4:
+    version "2.2.4"
+    resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
+    integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
+    dependencies:
+      loose-envify "^1.0.0"
   
   ip-regex@^4.0.0:
     version "4.3.0"
@@ -8699,6 +8757,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
     integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
   
+  lodash.difference@^4.5.0:
+    version "4.5.0"
+    resolved "https://registry.yarnpkg.com/lodash.difference/-/lodash.difference-4.5.0.tgz#9ccb4e505d486b91651345772885a2df27fd017c"
+    integrity sha512-dS2j+W26TQ7taQBGN8Lbbq04ssV3emRw4NY58WErlTO29pIqS0HmoT5aJ9+TUQ1N3G+JOZSji4eugsWwGp9yPA==
+  
   lodash.find@^4.6.0:
     version "4.6.0"
     resolved "https://registry.yarnpkg.com/lodash.find/-/lodash.find-4.6.0.tgz#cb0704d47ab71789ffa0de8b97dd926fb88b13b1"
@@ -9586,6 +9649,13 @@ Lockfile:
       semver "^7.3.4"
       validate-npm-package-license "^3.0.1"
   
+  normalize-path@^2.1.1:
+    version "2.1.1"
+    resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-2.1.1.tgz#1ab28b556e198363a8c1a6f7e6fa20137fe6aed9"
+    integrity sha512-3pKJwH184Xo/lnH6oyP1q2pMd7HcypqqmRs91/6/i2CGtWwIKGCkOOMTm/zXbgTEWHw1uNpNi/igc3ePOYHb6w==
+    dependencies:
+      remove-trailing-separator "^1.0.1"
+  
   normalize-path@^3.0.0, normalize-path@~3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
@@ -10292,6 +10362,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
     integrity sha1-5aSs0sEB/fPZpNB/DbxNtJ3SgXY=
   
+  pify@^4.0.1:
+    version "4.0.1"
+    resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
+    integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
+  
   pinkie-promise@^2.0.0:
     version "2.0.1"
     resolved "https://registry.yarnpkg.com/pinkie-promise/-/pinkie-promise-2.0.1.tgz#2135d6dfa7a358c069ac9b178776288228450ffa"
@@ -10597,6 +10672,14 @@ Lockfile:
       kleur "^3.0.3"
       sisteransi "^1.0.4"
   
+  prop-types-extra@^1.1.1:
+    version "1.1.1"
+    resolved "https://registry.yarnpkg.com/prop-types-extra/-/prop-types-extra-1.1.1.tgz#58c3b74cbfbb95d304625975aa2f0848329a010b"
+    integrity sha512-59+AHNnHYCdiC+vMwY52WmvP5dM3QLeoumYuEyceQDi9aEhtwN9zIQ2ZNo25sMyXnbh32h+P1ezDsUpUH3JAew==
+    dependencies:
+      react-is "^16.3.2"
+      warning "^4.0.0"
+  
   prop-types@^15.5.8, prop-types@^15.5.9, prop-types@^15.6.2, prop-types@^15.8.1:
     version "15.8.1"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
@@ -10794,7 +10877,7 @@ Lockfile:
       shallowequal "^1.1.0"
       source-map "^0.7.3"
   
-  react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
+  react-is@^16.12.0, react-is@^16.13.1, react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
     version "16.13.1"
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
     integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
@@ -10888,7 +10971,7 @@ Lockfile:
       prop-types "^15.6.2"
       react-lifecycles-compat "^3.0.4"
   
-  react-transition-group@^4.4.0, react-transition-group@^4.4.5:
+  react-transition-group@^4.4.0, react-transition-group@^4.4.2, react-transition-group@^4.4.5:
     version "4.4.5"
     resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.5.tgz#e53d4e3f3344da8521489fbef8f2581d42becdd1"
     integrity sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==
@@ -10909,6 +10992,22 @@ Lockfile:
       loose-envify "^1.4.0"
       prop-types "^15.7.2"
       react-lifecycles-compat "^3.0.4"
+  
+  react-widgets@^5.8.4:
+    version "5.8.4"
+    resolved "https://registry.yarnpkg.com/react-widgets/-/react-widgets-5.8.4.tgz#1c57c93cef7fabb88cd48c92a2a418f56553620d"
+    integrity sha512-WcA/K+eVKAW+vyeQKdRqo2gmnLqHbNSDDKQ84j/wyhbautCRrGbjWAmKb4+tI3OzUgCAAEJDZ75azAY2WoKWYQ==
+    dependencies:
+      "@restart/hooks" "^0.4.5"
+      "@types/classnames" "^2.3.1"
+      "@types/react-transition-group" "^4.4.4"
+      classnames "^2.3.1"
+      date-arithmetic "^4.0.1"
+      dom-helpers "^5.2.1"
+      prop-types-extra "^1.1.1"
+      react-transition-group "^4.4.2"
+      tiny-warning "^1.0.3"
+      uncontrollable "^7.2.1"
   
   react@17.0.2, react@^17.0.0:
     version "17.0.2"
@@ -11156,6 +11255,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
     integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
   
+  remove-trailing-separator@^1.0.1:
+    version "1.1.0"
+    resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
+    integrity sha512-/hS+Y0u3aOfIETiaiirUFwDBDzmXPvO+jAfKTitUngIPzdKc6Z0LoFjM/CK5PL4C+eKwHohlHAb6H0VFfmmUsw==
+  
   renderkid@^2.0.1:
     version "2.0.3"
     resolved "https://registry.yarnpkg.com/renderkid/-/renderkid-2.0.3.tgz#380179c2ff5ae1365c522bf2fcfcff01c5b74149"
@@ -11390,6 +11494,11 @@ Lockfile:
     integrity sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==
     dependencies:
       queue-microtask "^1.2.2"
+  
+  runtime-required@^1.1.0:
+    version "1.1.0"
+    resolved "https://registry.yarnpkg.com/runtime-required/-/runtime-required-1.1.0.tgz#a000a50c2748dba123f4dac5105e66d4599519c4"
+    integrity sha512-yX97f5E0WfNpcQnfVjap6vzQcvErkYYCx6eTK4siqGEdC8lglwypUFgZVTX7ShvIlgfkC4XGFl9O1KTYcff0pw==
   
   rxjs@^6.6.3, rxjs@^6.6.6:
     version "6.6.7"
@@ -11729,6 +11838,11 @@ Lockfile:
       decompress-response "^6.0.0"
       once "^1.3.1"
       simple-concat "^1.0.0"
+  
+  simple-html-tokenizer@^0.1.1:
+    version "0.1.1"
+    resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.1.1.tgz#05c2eec579ffffe145a030ac26cfea61b980fabe"
+    integrity sha512-Mc/gH3RvlKvB/gkp9XwgDKEWrSYyefIJPGG8Jk1suZms/rISdUuVEMx5O1WBnTWaScvxXDvGJrZQWblUmQHjkQ==
   
   single-line-log@^1.1.2:
     version "1.1.2"
@@ -12308,6 +12422,15 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
     integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
   
+  svg-inline-loader@^0.8.2:
+    version "0.8.2"
+    resolved "https://registry.yarnpkg.com/svg-inline-loader/-/svg-inline-loader-0.8.2.tgz#9872414f9e4141601e04eb80cda748c9a50dae71"
+    integrity sha512-kbrcEh5n5JkypaSC152eGfGcnT4lkR0eSfvefaUJkLqgGjRQJyKDvvEE/CCv5aTSdfXuc+N98w16iAojhShI3g==
+    dependencies:
+      loader-utils "^1.1.0"
+      object-assign "^4.0.1"
+      simple-html-tokenizer "^0.1.1"
+  
   swap-case@^1.1.0:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/swap-case/-/swap-case-1.1.2.tgz#c39203a4587385fad3c850a0bd1bcafa081974e3"
@@ -12840,6 +12963,16 @@ Lockfile:
       has-symbols "^1.0.2"
       which-boxed-primitive "^1.0.2"
   
+  uncontrollable@^7.2.1:
+    version "7.2.1"
+    resolved "https://registry.yarnpkg.com/uncontrollable/-/uncontrollable-7.2.1.tgz#1fa70ba0c57a14d5f78905d533cf63916dc75738"
+    integrity sha512-svtcfoTADIB0nT9nltgjujTi7BzVmwjZClOmskKu/E8FW9BXzg9os8OLr4f8Dlnk0rYWJIWr4wv9eKUXiQvQwQ==
+    dependencies:
+      "@babel/runtime" "^7.6.3"
+      "@types/react" ">=16.9.11"
+      invariant "^2.2.4"
+      react-lifecycles-compat "^3.0.4"
+  
   unicode-canonical-property-names-ecmascript@^1.0.4:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/unicode-canonical-property-names-ecmascript/-/unicode-canonical-property-names-ecmascript-1.0.4.tgz#2619800c4c825800efdd8343af7dd9933cbe2818"
@@ -12901,6 +13034,13 @@ Lockfile:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.0.tgz#75a4984efedc4b08975c5aeb73f530d02df25717"
     integrity sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==
+  
+  unixify@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/unixify/-/unixify-1.0.0.tgz#3a641c8c2ffbce4da683a5c70f03a462940c2090"
+    integrity sha512-6bc58dPYhCMHHuwxldQxO3RRNZ4eCogZ/st++0+fcC1nr0jiGUtAdBJ2qzmLQWSxbtz42pWt4QQMiZ9HvZf5cg==
+    dependencies:
+      normalize-path "^2.1.1"
   
   unpipe@1.0.0, unpipe@~1.0.0:
     version "1.0.0"
@@ -13065,12 +13205,22 @@ Lockfile:
     dependencies:
       makeerror "1.0.x"
   
-  warning@^4.0.2, warning@^4.0.3:
+  warning@^4.0.0, warning@^4.0.2, warning@^4.0.3:
     version "4.0.3"
     resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
     integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
     dependencies:
       loose-envify "^1.0.0"
+  
+  watchboy@^0.4.3:
+    version "0.4.3"
+    resolved "https://registry.yarnpkg.com/watchboy/-/watchboy-0.4.3.tgz#4b766e7923d8122e5811a6b9736a8e3e5943838c"
+    integrity sha512-GHs1HxwvxSMBsqd/WfTOZhj5gBdMqf5HQpfgtKxDfZRxrlYPDdVLRB61LCeRzJaWANmvSIMlfmRVDwVmJFgAKA==
+    dependencies:
+      lodash.difference "^4.5.0"
+      micromatch "^4.0.2"
+      pify "^4.0.1"
+      unixify "^1.0.0"
   
   watchpack@^2.2.0:
     version "2.2.0"
