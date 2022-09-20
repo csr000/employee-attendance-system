@@ -6,11 +6,6 @@ import * as PropTypes from 'prop-types'
 
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
   Collapse,
   DropdownMenu,
   DropdownItem,
@@ -23,13 +18,10 @@ import {
   InputGroupText,
   InputGroup,
   Media,
-  NavbarBrand,
   Navbar,
   NavItem,
   NavLink,
   Nav,
-  Progress,
-  Table,
   Container,
   Row,
   Col,
@@ -42,7 +34,7 @@ const Sidebar = (props: { location?: { pathname: string }; bgColor?: any; routes
   const [collapseOpen, setCollapseOpen] = useState<boolean>()
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName: string) => {
-    return props?.location?.pathname.indexOf(routeName) > -1 ? 'active' : ''
+    return props.location.pathname.indexOf(routeName) > -1 ? 'active' : ''
   }
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
