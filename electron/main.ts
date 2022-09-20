@@ -1,54 +1,55 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 import Database from 'better-sqlite3'
 import { ipcCHANNEL, REPLIES } from '../src/Constants'
+import { CREATE_DEFAULT_DB_TABLES } from './service'
+
+const bcrypt = require('bcryptjs')
 
 let mainWindow: BrowserWindow | null
 
 // connection to the database
 const db = new Database('db.db')
-// creating default tables
-db.prepare(
-  'CREATE TABLE IF NOT EXISTS employees (id INTEGER PRIMARY KEY, name TEXT, email TEXT, phone TEXT, dept TEXT)'
-).run()
-db.prepare(
-  'CREATE TABLE IF NOT EXISTS attendance (id INTEGER PRIMARY KEY, name TEXT, email TEXT, dept TEXT, datetime TEXT)'
-).run()
-
-db.prepare(
-  'CREATE TABLE IF NOT EXISTS auth (id INTEGER PRIMARY KEY, password TEXT)'
-).run()
+CREATE_DEFAULT_DB_TABLES(db)
 
 ipcMain.on(ipcCHANNEL, async (event, arg) => {
   const EmpDict = arg[0]
   console.log(EmpDict)
   // auth
   if (EmpDict.aim === 'login') {
-    const stmt = db
-      .prepare('SELECT password FROM auth WHERE password = ?')
-      .get(EmpDict.pwd)
-    stmt
-      ? event.reply(REPLIES.LOGIN, true)
-      : event.reply(REPLIES.LOGIN, false)
+    const stmt = db.prepare('SELECT password FROM auth')
+
+    bcrypt.compare(EmpDict.pwd, stmt.get().password, function (_err: Error, res: string) {
+      res ? event.reply(REPLIES.LOGIN, true) : event.reply(REPLIES.LOGIN, false)
+    })
   }
   // reset pwd
   if (EmpDict.aim === 'resetpwd') {
-    const stmt = db.prepare('UPDATE auth SET password = ? WHERE password = ?')
-    const info = stmt.run(EmpDict.newPwd, EmpDict.currentPwd)
-    info.changes ? event.reply(REPLIES.RESETpwd, true) : event.reply(REPLIES.RESETpwd, false)
+    const stmt = db.prepare('SELECT id, password FROM auth')
+
+    bcrypt.compare(EmpDict.currentPwd, stmt.get().password, function (_err: Error, res: string) {
+      if (res) {
+        const updatePwd = db.prepare('UPDATE auth SET password = ? WHERE id = ?')
+        bcrypt.genSalt(10, function (_err: Error, salt: string) {
+          bcrypt.hash(EmpDict.newPwd, salt, function (_err: Error, hash: string) {
+            // Store hash in your password DB.
+            updatePwd.run(hash, stmt.get().id)
+            event.reply(REPLIES.RESETpwd, true)
+          })
+        })
+      } else {
+        event.reply(REPLIES.RESETpwd, false)
+      }
+    })
   }
   // Attendance
   if (EmpDict.aim === 'add attendance') {
-    const stmt = db.prepare(
-      'INSERT INTO attendance (name, datetime) VALUES (?, ?)'
-    )
+    const stmt = db.prepare('INSERT INTO attendance (name, datetime) VALUES (?, ?)')
     stmt.run(EmpDict.selectedLect, EmpDict.datetime)
   }
   // Employees Info
   if (EmpDict.aim === 'create emp') {
     console.log('creating')
-    const stmt = db.prepare(
-      'INSERT INTO employees (name, email, phone, dept) VALUES (?, ?, ?, ?)'
-    )
+    const stmt = db.prepare('INSERT INTO employees (name, email, phone, dept) VALUES (?, ?, ?, ?)')
     stmt.run(EmpDict.name, EmpDict.email, EmpDict.phone, EmpDict.dept)
   }
   if (EmpDict.aim === 'delete emp') {
@@ -56,23 +57,13 @@ ipcMain.on(ipcCHANNEL, async (event, arg) => {
     stmt.run(EmpDict.id)
   }
   if (EmpDict.aim === 'update emp') {
-    const stmt = db.prepare(
-      'UPDATE employees SET name = ?, email = ?, phone = ?, dept = ? WHERE id = ?'
-    )
-    stmt.run(
-      EmpDict.name,
-      EmpDict.email,
-      EmpDict.phone,
-      EmpDict.dept,
-      EmpDict.id
-    )
+    const stmt = db.prepare('UPDATE employees SET name = ?, email = ?, phone = ?, dept = ? WHERE id = ?')
+    stmt.run(EmpDict.name, EmpDict.email, EmpDict.phone, EmpDict.dept, EmpDict.id)
   }
   const employees = db.prepare('SELECT * FROM employees').all()
   const attendance = db.prepare('SELECT * FROM attendance').all()
   event.reply(ipcCHANNEL, [employees, attendance])
 })
-
-
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string
