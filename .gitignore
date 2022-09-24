@@ -4,3 +4,6 @@ packages
 .webpack
 out
 db.db
+/test-results/
+/playwright-report/
+/playwright/.cache/
