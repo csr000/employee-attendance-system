@@ -4,6 +4,7 @@ packages
 .webpack
 out
 db.db
+e2d/screenshots/
 /test-results/
 /playwright-report/
 /playwright/.cache/
