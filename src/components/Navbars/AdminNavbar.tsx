@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 // reactstrap components
 import { Navbar, Container } from 'reactstrap'
@@ -51,10 +51,10 @@ const EmployeesForm = () => {
   const [dept, setDept] = useState('')
   return (
     <form className="employee-form">
-      <input type="text" placeholder="Name" onChange={e => setName(e.target.value)} />
-      <input type="text" placeholder="Email" onChange={e => setEmail(e.target.value)} />
-      <input type="text" placeholder="Mobile Number" onChange={e => setPhone(e.target.value)} />
-      <input type="text" placeholder="Department" onChange={e => setDept(e.target.value)} />
+      <input type="text" id="name" placeholder="Name" onChange={e => setName(e.target.value)} />
+      <input type="text" id="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+      <input type="text" id="mobile-number" placeholder="Mobile Number" onChange={e => setPhone(e.target.value)} />
+      <input type="text" id="department" placeholder="Department" onChange={e => setDept(e.target.value)} />
       <button
         className="add-btn"
         type="button"
@@ -84,7 +84,7 @@ const AdminNavbar = (props: { brandText: {} | null | undefined }) => {
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
         <Container fluid>
           <Link className="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" to="/">
-            {props.brandText}
+            {props.brandText as ReactNode}
           </Link>
           {getForm(props.brandText as string)}
         </Container>
