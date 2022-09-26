@@ -33,9 +33,9 @@ var ps
 const Sidebar = (props: { location?: { pathname: string }; bgColor?: any; routes?: any; logo?: any }) => {
   const [collapseOpen, setCollapseOpen] = useState<boolean>()
   // verifies if routeName is the one active (in browser input)
-  const activeRoute = (routeName: string) => {
-    return props.location.pathname.indexOf(routeName) > -1 ? 'active' : ''
-  }
+  // const activeRoute = (routeName: string) => {
+  //   return props.location.pathname.indexOf(routeName) > -1 ? 'active' : ''
+  // }
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
     setCollapseOpen(data => !data)
@@ -49,7 +49,7 @@ const Sidebar = (props: { location?: { pathname: string }; bgColor?: any; routes
     return routes.map((prop, key) => {
       return (
         <NavItem key={key}>
-          <NavLink to={prop.path} tag={NavLinkRRD} onClick={closeCollapse} activeClassName="active">
+          <NavLink to={prop.path} tag={NavLinkRRD} onClick={closeCollapse} activeClassName="active" id={prop.name}>
             <i className={prop.icon} />
             {prop.name}
           </NavLink>

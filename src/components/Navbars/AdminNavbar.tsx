@@ -15,7 +15,7 @@ const DashboardForm = () => {
   return (
     <form className="box">
       {/* add attendance */}
-      <select name="emps" onChange={e => setSelectedLect(e.target.value)}>
+      <select name="emps" id="emps" onChange={e => setSelectedLect(e.target.value)}>
         <option value="">--Choose {TITLE}--</option>
         {(emps as Employee[]).map(emp => (
           <option key={emp.id} value={emp.name}>
