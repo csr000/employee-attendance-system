@@ -10,6 +10,8 @@ import { ping } from '../../utils'
 import { UserContext } from '../../Context'
 import { UserContextType } from '../../@types/decs'
 import { ipcCHANNEL } from '../../Constants'
+import { CacheProvider } from '@emotion/react'
+import createCache from '@emotion/cache'
 
 const Index = () => {
   const { att, handleSetAtt } = useContext(UserContext) as UserContextType
@@ -30,6 +32,7 @@ const Index = () => {
       options: {
         filter: true,
         sort: true,
+        filterOptions: { fullWidth: true },
       },
     },
     {
@@ -43,8 +46,14 @@ const Index = () => {
   ]
 
   const options = {
-    selectableRowsHideCheckboxes: true,
+    // selectableRowsHideCheckboxes: true,
+    // filterType: 'checkbox',
+    responsive:"vertical",
   }
+  const muiCache = createCache({
+    key: 'mui-datatables',
+    prepend: true,
+  })
   return (
     <>
       <Header />
@@ -53,7 +62,9 @@ const Index = () => {
         <Row className="mt-5">
           <Col className="mb-5 mb-xl-0" xl="12">
             <Card className="shadow">
-              <MUIDataTable title={'Attendance'} data={att} columns={columns} options={options} />
+              <CacheProvider value={muiCache}>
+                <MUIDataTable title={'Attendance'} data={att} columns={columns} options={options} />
+              </CacheProvider>
             </Card>
           </Col>
         </Row>

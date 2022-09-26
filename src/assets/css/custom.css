@@ -170,3 +170,10 @@ h3 {
   color: #fff;
   padding: 10px;
 }
+
+.MuiTablePagination-selectLabel,
+.MuiTablePagination-displayedRows {
+  margin: 0;
+}
+
+

@@ -41,7 +41,7 @@ const Admin = (props: any) => {
   }
 
   const handleSetAtt = (event: SetStateAction<never[]>[]) => {
-    console.log('event', event)
+    // console.log('event', event)
     setEmps(event[0])
     ;(event[1] as Attendance[]).map((i: { datetime: string | Date }) => {
       let { datetime } = i
