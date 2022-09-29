@@ -54,7 +54,6 @@ export function ProcessRequest(EmpDict: EmpDictType, db: Database, event: IpcMai
   }
   // Employees Info
   if (EmpDict.aim === 'create emp') {
-    console.log('creating')
     const stmt = db.prepare('INSERT INTO employees (name, email, phone, dept) VALUES (?, ?, ?, ?)')
     stmt.run(EmpDict.name, EmpDict.email, EmpDict.phone, EmpDict.dept)
   }

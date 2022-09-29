@@ -2,7 +2,7 @@ import { useEffect, useMemo, useContext } from 'react'
 // reactstrap components
 import { Card, Container, Row, Col } from 'reactstrap'
 
-import MUIDataTable from 'mui-datatables'
+import MUIDataTable, { MUIDataTableOptions } from 'mui-datatables'
 import 'react-widgets/styles.css'
 
 import Header from '../../components/Headers/Header'
@@ -63,7 +63,7 @@ const Index = () => {
           <Col className="mb-5 mb-xl-0" xl="12">
             <Card className="shadow">
               <CacheProvider value={muiCache}>
-                <MUIDataTable title={'Attendance'} data={att} columns={columns} options={options} />
+                <MUIDataTable title={'Attendance'} data={att} columns={columns} options={options as MUIDataTableOptions} />
               </CacheProvider>
             </Card>
           </Col>
