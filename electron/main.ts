@@ -2,18 +2,19 @@ import { app, BrowserWindow, ipcMain } from 'electron'
 // import Database from 'better-sqlite3'
 import { ipcCHANNEL } from '../src/Constants'
 import { CREATE_DEFAULT_DB_TABLES } from './service'
-import { ProcessRequest } from './utils'
+import { ProcessRequest } from './processRequest'
 const Database = require('better-sqlite3')
 
 let mainWindow: BrowserWindow | null
 
 // connection to the database
 const db = new Database('db.db')
+db.pragma('journal_mode = WAL');
 CREATE_DEFAULT_DB_TABLES(db)
 
 ipcMain.on(ipcCHANNEL, async (event, arg) => {
   const EmpDict = arg[0]
-  console.log(EmpDict)
+  // console.log(EmpDict)
   ProcessRequest(EmpDict, db, event)
 })
 
