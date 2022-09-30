@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom'
 // reactstrap components
 import { Navbar, Container } from 'reactstrap'
 import TimeInput from 'react-widgets/TimeInput'
-import { ATT, EMP, ipcCHANNEL, TITLE } from '../../Constants'
+import { ATT, EMP, ipcCHANNEL, REPLIES, TITLE } from '../../Constants'
 import { UserContext } from '../../Context'
 import { Employee, UserContextType } from '../../@types/decs'
+import swal from 'sweetalert'
 
 const DashboardForm = () => {
   const [value, setValue] = useState<string>()
   const [selectedLect, setSelectedLect] = useState('')
   const { emps } = useContext(UserContext) as UserContextType
-  // CONSTANTS
+
   return (
     <form className="box">
       {/* add attendance */}
@@ -36,6 +37,7 @@ const DashboardForm = () => {
         onClick={() => {
           const datetime = value || Date()
           window.main.sendMessage(ipcCHANNEL, [{ aim: ATT.ADD, selectedLect, datetime }])
+          window.main.once(REPLIES.ALERT, (res: boolean) => (res ? swal('Success!', 'Attendance has been added sucessfully!', 'success') : null))
         }}
       >
         Add Attendance
@@ -60,6 +62,7 @@ const EmployeesForm = () => {
         type="button"
         onClick={() => {
           window.main.sendMessage(ipcCHANNEL, [{ aim: EMP.CREATE, name, email, phone, dept }])
+          window.main.once(REPLIES.ALERT, (res: boolean) => (res ? swal('Success!', 'User has been added sucessfully!', 'success') : null))
         }}
       >
         Add {TITLE}

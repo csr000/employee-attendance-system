@@ -17,7 +17,7 @@ export const AUTH = {
 }
 
 export const REPLIES = {
-  RESETpwd: "reply-resetpwd",
-  LOGIN: "reply-login"
-  
+  RESETpwd: 'reply-resetpwd',
+  LOGIN: 'reply-login',
+  ALERT: 'reply-sweet-alert',
 }
