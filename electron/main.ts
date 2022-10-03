@@ -9,12 +9,11 @@ let mainWindow: BrowserWindow | null
 
 // connection to the database
 const db = new Database('db.db')
-db.pragma('journal_mode = WAL');
+// db.pragma('journal_mode = WAL')
 CREATE_DEFAULT_DB_TABLES(db)
 
 ipcMain.on(ipcCHANNEL, async (event, arg) => {
   const EmpDict = arg[0]
-  // console.log(EmpDict)
   ProcessRequest(EmpDict, db, event)
 })
 
@@ -37,11 +36,14 @@ function createWindow() {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
   })
-
+  // mainWindow.setMenu(null)
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
 
   mainWindow.maximize()
   mainWindow.show()
+  mainWindow.webContents.openDevTools()
+
+  // mainWindow.webContents.once('dom-ready', (event) => { event.returnValue = "somettttttthing" })
 
   mainWindow.on('closed', () => {
     mainWindow = null

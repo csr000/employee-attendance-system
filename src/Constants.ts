@@ -1,5 +1,8 @@
 export const TITLE = 'Lecturer'
 export const ipcCHANNEL = 'main-channel'
+export const attCHANNEL = 'attendance-channel'
+export const empCHANNEL = 'employee-info-channel'
+
 export const EMP = {
   CREATE: 'create emp',
   DELETE: 'delete emp',

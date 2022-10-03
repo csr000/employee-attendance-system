@@ -7,7 +7,8 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 import './assets/scss/argon-dashboard-react.scss'
 
 import AdminLayout from './layouts/Admin'
-import { ping } from './utils'
+import { ping,  } from './utils'
+
 
 ping('ping')
 

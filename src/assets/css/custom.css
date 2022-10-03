@@ -144,24 +144,26 @@ h3 {
 
 .employee-form {
   /* display: flex; */
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 .employee-form input {
-  /* padding: 10px;
-
-  background-color: transparent;
-  color: #fff; */
   border-radius: 10px;
   border: 2px solid #bbb;
 }
+.attendance-form {
+  /* display: flex; */
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
 
-/* .employee-form ::placeholder {
-  color: rgb(222, 222, 222);
-} */
-
-/* .employee-form input[type='text']:focus {
-  border-color: cornflowerblue;
-} */
+.attendance-form select {
+  border-radius: 10px;
+  border: 2px solid #bbb;
+}
 
 .add-btn {
   border-radius: 20px;
@@ -176,4 +178,6 @@ h3 {
   margin: 0;
 }
 
-
+#navbar-main {
+  width: 0;
+}

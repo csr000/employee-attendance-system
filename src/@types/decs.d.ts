@@ -1,4 +1,4 @@
-import { SetStateAction } from 'react';
+import React from 'react'
 declare module 'layouts/*'
 declare module 'assets/*'
 declare module 'components/*'
@@ -22,8 +22,8 @@ export declare type Employee = {
 }
 
 export declare type UserContextType = {
-  emps: never[],
-  handleSetEmps: (event: SetStateAction<never[]>[]) => void,
-  att: never[],
-  handleSetAtt: (event: SetStateAction<never[]>[]) => void
+  emps: Employee[]
+  setEmps: React.Dispatch<React.SetStateAction<Employee[]>>
+  att: Attendance[]
+  setAtt: React.Dispatch<React.SetStateAction<Attendance[]>>
 }

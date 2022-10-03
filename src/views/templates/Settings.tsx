@@ -34,7 +34,7 @@ const Settings = () => {
 
   useEffect(() => {
     updateIsSuccess ? setErrorMsg('') : setErrorMsg('Current password is incorrect')
-  })
+  }, [])
 
   return (
     <>

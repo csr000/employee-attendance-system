@@ -1,13 +1,14 @@
-import { useState, useEffect, useMemo, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 // reactstrap components
 import { CardBody, Container, Row, Col, Button } from 'reactstrap'
 import { Employee, UserContextType } from '../../@types/decs'
 // core components
 import Header from '../../components/Headers/Header'
-import { EMP, ipcCHANNEL } from '../../Constants'
-import { UserContext } from '../../Context'
-import { ping } from '../../utils'
+import { EMP, empCHANNEL, ipcCHANNEL, REPLIES, TITLE } from '../../Constants'
 import '../../assets/css/custom.css'
+import { ping, writelog } from '../../utils'
+import swal from 'sweetalert'
+import { UserContext } from '../../Context'
 
 const Card = (props: Employee) => {
   // eslint-disable-next-line prefer-const
@@ -135,20 +136,44 @@ const Card = (props: Employee) => {
   )
 }
 
-const Employees = () => {
-  const { emps, handleSetEmps } = useContext(UserContext) as UserContextType
-  useMemo(() => ping('emp'), [])
+const EmployeesForm = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [dept, setDept] = useState('')
+  return (
+    <form className="employee-form">
+      <input type="text" id="name" placeholder="Name" onChange={e => setName(e.target.value)} />
+      <input type="text" id="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+      <input type="text" id="mobile-number" placeholder="Mobile Number" onChange={e => setPhone(e.target.value)} />
+      <input type="text" id="department" placeholder="Department" onChange={e => setDept(e.target.value)} />
+      <button
+        className="add-btn"
+        type="button"
+        onClick={() => {
+          window.main.sendMessage(ipcCHANNEL, [{ aim: EMP.CREATE, name, email, phone, dept }])
+          window.main.once(REPLIES.ALERT, (res: boolean) => (res ? swal('Success!', 'User has been added sucessfully!', 'success') : null))
+        }}
+      >
+        Add {TITLE}
+      </button>
+    </form>
+  )
+}
 
+const Employees = () => {
+  const { emps, setEmps } = useContext(UserContext) as UserContextType
+
+  writelog('emps', emps)
+  useEffect(() => ping('emp'), [])
   useEffect(() => {
-    window.main.on(ipcCHANNEL, handleSetEmps)
-    // ping()
-    return () => {
-      window.main.removeListener(ipcCHANNEL, handleSetEmps)
-    }
+    window.main.once(empCHANNEL, (data: Array<Employee>) => setEmps(data))
   })
+
   return (
     <>
       <Header />
+      <EmployeesForm />
       {/* Page content */}
       <Container className="mt--7" fluid>
         <Row>
